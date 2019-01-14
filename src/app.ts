@@ -2,8 +2,6 @@ import 'reflect-metadata';
 import * as express from 'express';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
-import * as path from 'path';
 
 import { router } from './router';
 import { logger } from './lib/logger';
@@ -27,8 +25,6 @@ class App {
     }));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
-
-    this.app.use(cors());
   }
 }
 

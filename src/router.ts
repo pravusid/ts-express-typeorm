@@ -1,11 +1,11 @@
-import * as Express from 'express';
+import * as express from 'express';
 import { homeController } from './api/home.controller';
 
 class Router {
-  public routes = Express.Router();
+  routes = express.Router();
 
   constructor() {
-    this.routes.use('', homeController.routes);
+    this.routes.use('', homeController);
   }
 }
 

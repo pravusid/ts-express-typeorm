@@ -3,6 +3,7 @@
 
 .env
 ormconfig.json
+database.sh
 
 # Logs
 logs

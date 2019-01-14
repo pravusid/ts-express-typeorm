@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
+    "target": "es6",
     "module": "commonjs",
     "declaration": true,
-    "strict": true,
+    "sourceMap": true,
     "removeComments": true,
-    "noLib": false,
-    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
-    "sourceMap": true,
-    "outDir": "./dist",
     "rootDir": "./src",
+    "outDir": "./dist"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

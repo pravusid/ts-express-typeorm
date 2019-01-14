@@ -1,0 +1,62 @@
+{
+  "name": "express-ts-sample",
+  "version": "0.0.1",
+  "description": "typescript + express.js + typeorm",
+  "author": "Sangdon Park <pravusid@gmail.com>",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node -r dotenv/config src/main.ts",
+    "dev": "nodemon",
+    "debug": "nodemon --config nodemon-debug.json",
+    "prestart:prod": "rimraf dist && tsc",
+    "start:prod": "node -r dotenv/config dist/main.js",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.4",
+    "@types/dotenv": "^6.1.0",
+    "@types/express": "^4.16.0",
+    "@types/morgan": "^1.7.35",
+    "@types/winston": "^2.4.4",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.12",
+    "@types/supertest": "^2.0.7",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9",
+    "prettier-tslint": "^0.4.2",
+    "rimraf": "^2.6.3",
+    "supertest": "^3.3.0",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^7.0.1",
+    "tslint": "5.12.1",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.2.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "test",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

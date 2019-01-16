@@ -17,7 +17,7 @@ export class Post {
   constructor(title: string, author: string, content: string) {
     this.title = title;
     this.author = author;
-    this.content = author;
+    this.content = content;
   }
 
   isValid(): boolean {

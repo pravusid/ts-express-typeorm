@@ -1,5 +1,5 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "exec": "node --inspect-brk -r ts-node/register -r dotenv/config src/main.ts"
+  "exec": "node --inspect-brk -r ts-node/register src/main.ts"
 }

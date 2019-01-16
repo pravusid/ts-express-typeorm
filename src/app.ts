@@ -15,12 +15,12 @@ class App {
     this.app = express();
     this.configuration();
 
+    connectToDatabase().then(res => logger.info('database connection is valid'));
+
     logger.info(`environment: ${this.app.get('env')}`);
   }
 
-  private async configuration() {
-    await connectToDatabase();
-
+  private configuration() {
     this.app.disable('x-powered-by');
 
     this.app.use(

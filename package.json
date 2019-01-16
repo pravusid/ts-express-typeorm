@@ -6,11 +6,11 @@
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node -r dotenv/config src/main.ts",
+    "start": "ts-node src/main.ts",
     "dev": "nodemon",
     "debug": "nodemon --config nodemon-debug.json",
     "prestart:prod": "rimraf dist && tsc",
-    "start:prod": "node -r dotenv/config dist/main.js",
+    "start:prod": "node dist/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "test:watch": "jest --watch",

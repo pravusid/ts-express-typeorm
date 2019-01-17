@@ -15,7 +15,7 @@ class App {
     this.app = express();
     this.configuration();
 
-    connectToDatabase().then(res => logger.info('database connection is valid'));
+    connectToDatabase().then(res => logger.info('database is connected'));
 
     logger.info(`environment: ${this.app.get('env')}`);
   }

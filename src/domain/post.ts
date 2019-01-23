@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNotEmpty } from 'class-validator';
 
 @Entity()
 export class Post {
@@ -6,21 +7,22 @@ export class Post {
   id: number;
 
   @Column()
+  @IsNotEmpty()
   title: string;
 
   @Column()
+  @IsNotEmpty()
   author: string;
 
   @Column()
+  @IsNotEmpty()
   content: string;
 
-  constructor(title: string, author: string, content: string) {
-    this.title = title;
-    this.author = author;
-    this.content = content;
-  }
-
-  isValid(): boolean {
-    return this.title.length !== 0 && this.author.length !== 0;
+  constructor(args?: { title: string, author: string, content: string }) {
+    if (args) {
+      this.title = args.title;
+      this.author = args.author;
+      this.content = args.content;
+    }
   }
 }

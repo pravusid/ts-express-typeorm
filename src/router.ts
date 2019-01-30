@@ -1,12 +1,6 @@
-import * as express from 'express';
+import { Router } from 'express';
 import { homeController } from './api/home.controller';
 
-class Router {
-  router = express.Router();
+export const router = Router();
 
-  constructor() {
-    this.router.use('', homeController);
-  }
-}
-
-export const router = new Router().router;
+router.use('', homeController.routes);

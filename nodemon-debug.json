@@ -1,5 +1,0 @@
-{
-  "watch": ["src"],
-  "ext": "ts",
-  "exec": "node --inspect-brk -r ts-node/register src/main.ts"
-}

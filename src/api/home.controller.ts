@@ -30,4 +30,4 @@ class HomeController {
   }
 }
 
-export const homeController = new HomeController().routes;
+export const homeController = new HomeController();

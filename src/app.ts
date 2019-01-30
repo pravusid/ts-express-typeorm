@@ -8,30 +8,18 @@ import { router } from './router';
 import { logger } from './lib/logger';
 import { connectToDatabase } from './config/database';
 
-class App {
-  app: express.Application;
+const app = express();
 
-  constructor() {
-    this.app = express();
-    this.configuration();
+const env = app.get('env');
+logger.info(`environment: ${env}`);
 
-    connectToDatabase().then(res => logger.info('database is connected'));
+app.disable('x-powered-by');
 
-    logger.info(`environment: ${this.app.get('env')}`);
-  }
+app.use(morgan(env === 'development' ? 'dev' : 'combined'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(router);
 
-  private configuration() {
-    this.app.disable('x-powered-by');
+connectToDatabase().then(() => logger.info('database is connected'));
 
-    this.app.use(
-      morgan('dev', {
-        skip: () => this.app.get('env') === 'test',
-      }),
-    );
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: false }));
-    this.app.use(router);
-  }
-}
-
-export default new App().app;
+export default app;

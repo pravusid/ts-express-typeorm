@@ -4,11 +4,14 @@ import { Post } from '../domain/post';
 import { async } from '../lib/async.handler';
 import { CustomError } from '../domain/error/custom.error';
 import { validation } from '../lib/validator';
+import { logger } from '../lib/logger';
 
 class HomeController {
   routes = Router();
 
   constructor() {
+    logger.debug('Initialize HomeController');
+
     this.routes.get('/:id', async(this.getPost));
     this.routes.post('', async(this.savePost));
   }

@@ -5,7 +5,7 @@ import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 
 import { router } from './router';
-import { logger } from './lib/logger';
+import { logger, winstonStream } from './lib/logger';
 import { connectToDatabase } from './config/database';
 
 const app = express();
@@ -15,11 +15,11 @@ logger.info(`environment: ${env}`);
 
 app.disable('x-powered-by');
 
-app.use(morgan(env === 'development' ? 'dev' : 'combined'));
+app.use(env === 'production' ? morgan('combined', { stream: winstonStream }) : morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);
 
-connectToDatabase().then(() => logger.info('database is connected'));
+connectToDatabase().then(() => logger.info('connected to database'));
 
 export default app;

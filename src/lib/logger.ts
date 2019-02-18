@@ -6,9 +6,7 @@ export const logger = createLogger({
   level: 'debug',
   format: combine(
     timestamp(),
-    printf((info) => {
-      return `${info.timestamp} [${info.level}]: ${info.message}`;
-    }),
+    printf(info => `${info.timestamp} [${info.level}]: ${info.message}`),
   ),
   transports: [new transports.Console()],
 });
@@ -18,3 +16,9 @@ if (process.env.NODE_ENV === 'production') {
     transports: [new transports.File({ filename: 'express-ts.log', level: 'info' })],
   });
 }
+
+export const winstonStream = {
+  write(message: string) {
+    logger.info(message);
+  },
+};

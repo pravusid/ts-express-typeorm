@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { Post } from '../domain/post';
 import { async } from '../lib/async.handler';
-import { CustomError } from '../domain/error/custom.error';
+import { CustomExternalError } from '../domain/error/custom.errors';
 import { validation } from '../lib/validator';
 import { logger } from '../lib/logger';
 
@@ -22,7 +22,7 @@ class HomeController {
       const post = await getRepository(Post).findOneOrFail(id);
       resp.json(post);
     } catch {
-      throw new CustomError(404, '요청 게시물이 존재하지 않습니다');
+      throw new CustomExternalError('요청 게시물이 존재하지 않습니다', 404);
     }
   }
 

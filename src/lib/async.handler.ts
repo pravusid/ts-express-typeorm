@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { CustomError } from '../domain/error/custom.error';
+import { CustomExternalError, CustomInternalError } from '../domain/error/custom.errors';
+import { logger } from './logger';
 
 type AsyncHandler = (
   req: Request,
@@ -10,6 +11,10 @@ type AsyncHandler = (
 export const async = (func: AsyncHandler) => {
   return (request: Request, response: Response, next: NextFunction) =>
     Promise.resolve(func(request, response, next)).catch((err: Error) => {
+      if (err instanceof CustomInternalError) {
+        logger.error('Internal Error', { message: err.message, stack: err.stackArray });
+      }
+
       const getErrors = () => {
         try {
           return JSON.parse(err.message);
@@ -17,8 +22,9 @@ export const async = (func: AsyncHandler) => {
           return [{ message: err.message }];
         }
       };
-      response.status(err instanceof CustomError ? err.statusCode : 500);
-      response.json({ errors: getErrors() });
+
+      response.status(err instanceof CustomExternalError ? err.statusCode : 500);
+      response.json(err instanceof CustomExternalError ? { errors: getErrors() } : 'Server Error');
       next();
     });
 };

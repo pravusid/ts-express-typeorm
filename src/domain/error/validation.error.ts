@@ -1,8 +1,8 @@
-import { CustomError } from './custom.error';
+import { CustomExternalError } from './custom.errors';
 import { ValidationErrors } from '../../lib/validator';
 
-export class ValidationError extends CustomError {
+export class ValidationError extends CustomExternalError {
   constructor(errors: ValidationErrors) {
-    super(400, JSON.stringify(errors));
+    super(JSON.stringify(errors));
   }
 }

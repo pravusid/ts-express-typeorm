@@ -5,7 +5,7 @@
   "author": "Sangdon Park <pravusid@gmail.com>",
   "main": "dist/main.js",
   "scripts": {
-    "prestart": "npm run clean && npm run build",
+    "prestart": "npm run build",
     "start": "NODE_ENV=production node dist/main.js",
     "build": "tsc",
     "clean": "rimraf dist",

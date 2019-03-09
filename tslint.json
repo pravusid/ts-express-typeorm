@@ -6,7 +6,7 @@
     "align": false,
     "max-line-length": [
       true,
-      { "limit": 120, "ignore-pattern": "^import |^export {(.*?)}" }
+      { "limit": 100, "ignore-pattern": "^import |^export {(.*?)}" }
     ]
   },
   "rulesDirectory": []

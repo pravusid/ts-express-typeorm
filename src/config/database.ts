@@ -1,17 +1,14 @@
-import { createConnection, getConnectionOptions } from 'typeorm';
+import { createConnection, getConnectionOptions, ConnectionOptionsReader } from 'typeorm';
 import { CustomNamingStrategy } from './custom.naming.strategy';
 
-const entities =
-  process.env.NODE_ENV === 'production'
-    ? 'dist/domain/**/*.js'
-    : 'src/domain/**/*.ts';
-
 export const connectToDatabase = async () => {
-  const option = await getConnectionOptions();
+  const connectionOptions = await (process.env.NODE_ENV === 'production'
+    ? getConnectionOptions()
+    : new ConnectionOptionsReader({ configName: 'ormconfig.dev' }).get('default'));
+
   return await createConnection(
-    Object.assign(option, {
+    Object.assign(connectionOptions, {
       namingStrategy: new CustomNamingStrategy(),
-      entities: [entities],
     }),
   );
 };

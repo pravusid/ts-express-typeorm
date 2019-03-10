@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { homeController } from './routes/home.controller';
+import { homeController } from './api/home.controller';
 
 export const router = Router();
 

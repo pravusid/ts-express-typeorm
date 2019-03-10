@@ -1,10 +1,6 @@
 # https://github.com/github/gitignore/blob/master/Node.gitignore #
 ##################################################################
 
-.env
-ormconfig.json
-database.sh
-
 # Logs
 logs
 *.log
@@ -64,3 +60,7 @@ typings/
 # Custom
 .idea
 dist
+.env
+ormconfig.json
+ormconfig.dev.json
+database.sh

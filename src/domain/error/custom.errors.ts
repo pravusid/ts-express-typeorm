@@ -1,9 +1,6 @@
 export class CustomExternalError extends Error {
-  statusCode: number;
-
-  constructor(message: string, status: number = 400) {
-    super(message);
-    this.statusCode = status;
+  constructor(public messages: string[], public statusCode: number = 400) {
+    super();
   }
 }
 

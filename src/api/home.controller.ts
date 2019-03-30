@@ -5,12 +5,13 @@ import { async } from '../lib/async.handler';
 import { CustomExternalError } from '../domain/error/custom.errors';
 import { validation } from '../lib/validator';
 import { logger } from '../lib/logger';
+import { ErrorCode } from '../domain/error/error.code';
 
 class HomeController {
   routes = Router();
 
   constructor() {
-    logger.debug('Initialize HomeController');
+    logger.debug('HomeController Initialized');
 
     this.routes.get('/:id', async(this.getPost));
     this.routes.post('', async(this.savePost));
@@ -22,7 +23,7 @@ class HomeController {
       const post = await getRepository(Post).findOneOrFail(id);
       resp.json(post);
     } catch {
-      throw new CustomExternalError('요청 게시물이 존재하지 않습니다', 404);
+      throw new CustomExternalError([ErrorCode.ARTICLE_NOT_FOUND], 404);
     }
   }
 

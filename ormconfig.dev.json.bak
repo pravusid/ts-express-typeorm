@@ -8,5 +8,5 @@
   "database": "test",
   "logging": true,
   "synchronize": true,
-  "entities": ["src/domain/**/*.ts"]
+  "entities": ["dist/domain/**/*.js"]
 }

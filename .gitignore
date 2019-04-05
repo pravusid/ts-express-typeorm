@@ -64,3 +64,4 @@ dist
 ormconfig.json
 ormconfig.dev.json
 database.sh
+tsconfig.tsbuildinfo

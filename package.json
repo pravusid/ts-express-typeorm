@@ -1,6 +1,6 @@
 {
   "name": "express-ts-sample",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "typescript + express.js + typeorm",
   "author": "Sangdon Park <pravusid@gmail.com>",
   "main": "dist/main.js",
@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production node dist/main.js",
     "build": "tsc",
     "clean": "rimraf tsconfig.tsbuildinfo && rimraf dist",
-    "dev": "npm run build && concurrently 'tsc -w' 'nodemon --watch dist dist/main.js'",
+    "dev": "npm run build && concurrently -p none 'tsc -w' 'nodemon --watch dist dist/main.js'",
     "debug": "nodemon --watch src --exec 'node --inspect-brk -r ts-node/register' src/main.ts",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",

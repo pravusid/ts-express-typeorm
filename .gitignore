@@ -62,6 +62,7 @@ typings/
 dist
 .env
 ormconfig.json
-ormconfig.dev.json
+ormconfig.development.json
+ormconfig.debug.json
 database.sh
 tsconfig.tsbuildinfo

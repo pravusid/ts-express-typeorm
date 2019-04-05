@@ -4,4 +4,12 @@ import { logger } from './lib/logger';
 require('dotenv').config();
 
 const { PORT } = process.env;
-app.listen(PORT, () => logger.info(`Listening on port ${PORT}`));
+const server = app.listen(PORT, () => logger.info(`Listening on port ${PORT}`));
+
+server.on('error', (error: any) => {
+  if (error.syscall === 'listen' && ['EACCES', 'EADDRINUSE'].some(x => x === error.code)) {
+    logger.error(`프로세스를 종료합니다: ${error.message}`);
+    process.exit(1);
+  }
+  throw error;
+});

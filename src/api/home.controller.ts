@@ -19,7 +19,7 @@ class HomeController {
 
   async getPost(req: Request, resp: Response) {
     try {
-      const id = req.params.id;
+      const { id } = req.params;
       const post = await getRepository(Post).findOneOrFail(id);
       resp.json(post);
     } catch {

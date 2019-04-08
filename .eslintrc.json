@@ -1,0 +1,38 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off",
+    "import/prefer-default-export": false,
+    "import/no-unresolved": false,
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "no-public",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-parameter-properties": "allow"
+  },
+  "overrides": [
+    {
+      "files": ["test/**/*.ts", "test/**/*.tsx"],
+      "env": {
+        "jest": true
+      },
+      "plugins": ["jest"],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-object-literal-type-assertion": "off"
+      }
+    }
+  ]
+}

@@ -18,7 +18,7 @@ export class Post {
   @IsNotEmpty()
   content: string;
 
-  constructor(args?: { title: string, author: string, content: string }) {
+  constructor(args?: { title: string; author: string; content: string }) {
     if (args) {
       this.title = args.title;
       this.author = args.author;

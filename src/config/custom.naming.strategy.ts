@@ -3,9 +3,7 @@ import { snakeCase } from 'typeorm/util/StringUtils';
 
 export class CustomNamingStrategy extends DefaultNamingStrategy {
   columnName(propertyName: string, customName: string, embeddedPrefixes: string[]): string {
-    return (
-      snakeCase(embeddedPrefixes.join('_')) + (customName ? customName : snakeCase(propertyName))
-    );
+    return snakeCase(embeddedPrefixes.join('_')) + (customName || snakeCase(propertyName));
   }
 
   relationName(propertyName: string): string {
@@ -17,6 +15,6 @@ export class CustomNamingStrategy extends DefaultNamingStrategy {
   }
 
   joinTableColumnName(tableName: string, propertyName: string, columnName?: string): string {
-    return snakeCase(`${tableName}_${columnName ? columnName : propertyName}`);
+    return snakeCase(`${tableName}_${columnName || propertyName}`);
   }
 }

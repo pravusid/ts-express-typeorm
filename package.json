@@ -48,23 +48,5 @@
     "tslint": "5.14.0",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.4.1"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json",
-      "ts",
-      "tsx"
-    ],
-    "testRegex": "^.+\\.spec\\.(js|jsx|ts|tsx)$",
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
-    "coverageDirectory": "coverage",
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "node"
   }
 }

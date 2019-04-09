@@ -3,4 +3,4 @@ import { homeController } from './api/home.controller';
 
 export const router = Router();
 
-router.use('', homeController.routes);
+router.use(homeController.routes);

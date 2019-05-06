@@ -1,10 +1,10 @@
-import app from './app';
+import { configureApp } from './app';
 import { logger } from './lib/logger';
 
 require('dotenv').config();
 
 const { PORT } = process.env;
-const server = app.listen(PORT, () => logger.info(`Listening on port ${PORT}`));
+const server = configureApp().listen(PORT, () => logger.info(`Listening on port ${PORT}`));
 
 server.on('error', (error: any) => {
   if (error.syscall === 'listen' && ['EACCES', 'EADDRINUSE'].some(x => x === error.code)) {

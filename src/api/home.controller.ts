@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { Post } from '../domain/post';
-import { asyncHandler } from '../lib/error.handler.async';
+import { asyncHandler } from '../lib/error.handlers';
 import { CustomExternalError } from '../domain/error/custom.errors';
 import { validation } from '../lib/validator';
 import { ErrorCode } from '../domain/error/error.code';

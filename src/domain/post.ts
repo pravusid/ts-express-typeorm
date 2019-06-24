@@ -14,7 +14,7 @@ export class Post {
   @IsNotEmpty()
   author: string;
 
-  @Column()
+  @Column({ type: 'text' })
   @IsNotEmpty()
   content: string;
 

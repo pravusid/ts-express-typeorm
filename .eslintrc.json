@@ -19,16 +19,16 @@
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-member-accessibility": "no-public",
+    "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-object-literal-type-assertion": "off",
-    "@typescript-eslint/no-parameter-properties": "allow",
+    "@typescript-eslint/no-parameter-properties": "off",
     "@typescript-eslint/prefer-interface": "off"
   },
   "overrides": [
     {
-      "files": ["test/**/*.ts"],
+      "files": ["test/**/*.ts", "test/**/*.tsx"],
       "env": {
         "jest": true
       },

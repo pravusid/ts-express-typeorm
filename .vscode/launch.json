@@ -23,7 +23,6 @@
         "--runInBand"
       ],
       "cwd": "${workspaceFolder}",
-      "runtimeVersion": "<NODE_VESION_IN_NVM>",
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
       "disableOptimisticBPs": true

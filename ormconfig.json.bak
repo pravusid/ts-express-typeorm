@@ -6,5 +6,7 @@
   "username": "test",
   "password": "test",
   "database": "test",
+  "logging": true,
+  "synchronize": true,
   "entities": ["dist/domain/**/*.js"]
 }

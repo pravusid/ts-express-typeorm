@@ -58,11 +58,10 @@ typings/
 .yarn-integrity
 
 # Custom
-.idea
-dist
+dist/
+.idea/
 .env
 ormconfig.json
-ormconfig.development.json
-ormconfig.debug.json
+ormconfig.ts.json
 database.sh
 tsconfig.tsbuildinfo

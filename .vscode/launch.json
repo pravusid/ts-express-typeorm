@@ -5,14 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      // https://github.com/Microsoft/vscode-recipes/tree/master/nodemon
       "type": "node",
-      "request": "attach",
-      "name": "Node: Nodemon",
-      "internalConsoleOptions": "neverOpen",
+      "request": "launch",
+      "name": "Debug TypeScript in Node.js",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "program": "${workspaceFolder}/src/main.ts",
+      "cwd": "${workspaceFolder}",
       "protocol": "inspector",
-      "processId": "${command:PickProcess}",
-      "restart": true
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ]
     },
     {
       "type": "node",

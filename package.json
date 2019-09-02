@@ -11,7 +11,7 @@
     "build": "tsc",
     "clean": "rimraf tsconfig.tsbuildinfo && rimraf dist",
     "dev": "npm run build && concurrently -p none \"tsc -w\" \"nodemon --watch dist --exec 'node -r source-map-support/register' dist/main.js\"",
-    "dev:ts": "nodemon --watch src --exec 'ENTITY_ENV=ts ts-node' src/main.ts",
+    "dev:ts": "nodemon --watch src --exec 'ORM_ENV=ts ts-node' src/main.ts",
     "lint": "eslint 'src/**/*'",
     "lint:fix": "eslint --fix 'src/**/*'",
     "test": "jest",

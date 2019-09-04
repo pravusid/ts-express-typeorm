@@ -1,7 +1,7 @@
-import { Express, Request, Response, NextFunction } from 'express';
+import { Express, NextFunction, Request, Response } from 'express';
 import { CustomExternalError, CustomInternalError } from '../domain/error/custom.errors';
-import { logger } from './logger';
 import { ErrorCode } from '../domain/error/error.code';
+import { logger } from './logger';
 
 const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction) => {
   if (error instanceof CustomExternalError) {

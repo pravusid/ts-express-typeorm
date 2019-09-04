@@ -1,4 +1,4 @@
-import { createConnection, ConnectionOptionsReader } from 'typeorm';
+import { ConnectionOptionsReader, createConnection } from 'typeorm';
 import { CustomNamingStrategy } from './custom.naming.strategy';
 
 export const connectToDatabase = async (env?: string) => {

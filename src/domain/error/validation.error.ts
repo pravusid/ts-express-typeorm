@@ -1,5 +1,5 @@
-import { CustomExternalError } from './custom.errors';
 import { ValidationErrors } from '../../lib/validator';
+import { CustomExternalError } from './custom.errors';
 
 export class ValidationError extends CustomExternalError {
   constructor(errors: ValidationErrors) {

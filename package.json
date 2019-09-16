@@ -1,6 +1,6 @@
 {
   "name": "express-ts-sample",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "typescript + express.js + typeorm",
   "author": "Sangdon Park <pravusid@gmail.com>",
   "main": "dist/main.js",
@@ -32,8 +32,8 @@
     "mysql2": "^1.7.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^2.7.1",
-    "typeorm": "^0.2.18",
-    "typescript": "3.5.3",
+    "typeorm": "^0.2.19",
+    "typescript": "^3.6.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {

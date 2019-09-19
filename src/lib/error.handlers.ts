@@ -21,8 +21,6 @@ const errorHandler = (error: Error, request: Request, response: Response, next: 
 type AsyncFunc = (req: Request, resp: Response, next: NextFunction) => Promise<any>;
 
 export const asyncHandler: (func: AsyncFunc) => AsyncFunc = func => (request, response, next) =>
-  Promise.resolve(func(request, response, next)).catch((error: Error) =>
-    errorHandler(error, request, response, next),
-  );
+  Promise.resolve(func(request, response, next)).catch((error: Error) => errorHandler(error, request, response, next));
 
 export const syncHandler = (app: Express) => app.use(errorHandler);

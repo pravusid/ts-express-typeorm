@@ -9,7 +9,7 @@ const errorHandler = (error: Error, request: Request, response: Response, next: 
   } else {
     if (error instanceof CustomInternalError) {
       logger.error(ErrorCode.INTERNAL_ERROR, {
-        message: error.message,
+        errorMessage: error.message,
         stack: error.stackArray,
       });
     }

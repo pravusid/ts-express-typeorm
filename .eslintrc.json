@@ -9,8 +9,8 @@
   "extends": [
     "airbnb-base",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint"
   ],
   "rules": {
     "class-methods-use-this": "off",
@@ -28,11 +28,19 @@
   },
   "overrides": [
     {
-      "files": ["test/**/*.ts", "test/**/*.tsx"],
+      "files": [
+        "test/**/*.ts",
+        "test/**/*.tsx"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.spec.json"
+      },
       "env": {
         "jest": true
       },
-      "plugins": ["jest"],
+      "plugins": [
+        "jest"
+      ],
       "rules": {
         "dot-notation": "off",
         "global-require": "off",

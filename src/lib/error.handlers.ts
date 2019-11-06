@@ -1,5 +1,6 @@
 import { Express, NextFunction, Request, Response } from 'express';
-import { CustomExternalError, CustomInternalError } from '../domain/error/custom.errors';
+import { CustomExternalError } from '../domain/error/custom.external.error';
+import { CustomInternalError } from '../domain/error/custom.internal.error';
 import { ErrorCode } from '../domain/error/error.code';
 import { logger } from './logger';
 

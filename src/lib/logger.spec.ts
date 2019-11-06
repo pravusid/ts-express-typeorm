@@ -1,4 +1,4 @@
-import { logger } from '../../src/lib/logger';
+import { logger } from './logger';
 
 describe('logger', () => {
   test('calling logger always returns identical object', () => {

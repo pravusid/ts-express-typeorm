@@ -1,7 +1,7 @@
-import 'reflect-metadata';
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import * as morgan from 'morgan';
+import 'reflect-metadata';
 import { connectToDatabase } from './config/database';
 import { syncHandler } from './lib/error.handlers';
 import { logger, winstonStream } from './lib/logger';

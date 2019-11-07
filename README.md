@@ -1,4 +1,6 @@
-# Express.js Typescript Sample
+# ts-express-typeorm
+
+TypeScript & Express.js & TypeORM Example
 
 ## Dependencies
 
@@ -9,13 +11,13 @@
 - `winston`
 - `jest`(`ts-jest`)
 
-## Code Conventions
+## Linting & Formatting
 
 - `typescript-eslint`
 - `prettier`
 
 ## LiveReload for development
 
-TypeScript >= 3.5
+TypeScript >= 3.5.0
 
 > concurrently & incremental build & nodemon

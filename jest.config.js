@@ -4,6 +4,7 @@ module.exports = {
       tsConfig: 'tsconfig.spec.json',
     },
   },
+  setupFiles: ['dotenv/config'],
   moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
   testRegex: '^.+\\.spec\\.(js|jsx|ts|tsx)$',
   transform: {

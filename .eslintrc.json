@@ -15,13 +15,16 @@
   "rules": {
     "class-methods-use-this": "off",
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "no-empty-function": "off",
+    "no-useless-constructor": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/no-parameter-properties": "off"
+    "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/no-useless-constructor": ["error"]
   },
   "overrides": [
     {

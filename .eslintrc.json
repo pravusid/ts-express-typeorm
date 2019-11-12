@@ -16,6 +16,7 @@
     "class-methods-use-this": "off",
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "no-empty-function": "off",
+    "no-undef": "off",
     "no-useless-constructor": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",

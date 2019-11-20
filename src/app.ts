@@ -1,8 +1,8 @@
 import { json, urlencoded } from 'body-parser';
+import * as compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as helmet from 'helmet';
-import * as methodOverride from 'method-override';
 import * as morgan from 'morgan';
 import 'reflect-metadata';
 import { connectToDatabase } from './config/database';
@@ -22,9 +22,7 @@ export function configureApp(): express.Express {
 
   app.use(json());
   app.use(urlencoded({ extended: false }));
-
-  // request from html-form
-  app.use(methodOverride());
+  app.use(compression());
 
   app.use(configureRouter());
   app.use(errorHandler);

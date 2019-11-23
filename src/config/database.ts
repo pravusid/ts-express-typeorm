@@ -1,4 +1,4 @@
-import { ConnectionOptionsReader, createConnection } from 'typeorm';
+import { ConnectionOptionsReader, createConnection, getConnection } from 'typeorm';
 import { CustomNamingStrategy } from './custom.naming.strategy';
 
 export const connectToDatabase = async (env?: string) => {
@@ -14,3 +14,5 @@ export const connectToDatabase = async (env?: string) => {
     }),
   );
 };
+
+export const disconnectDatabase = () => getConnection().close();

@@ -1,20 +1,10 @@
-import { createLogger, format, transports } from 'winston';
+import * as pino from 'pino';
 
-const { combine, timestamp, json } = format;
-
-export const logger = createLogger({
-  level: 'debug',
-  format: combine(timestamp(), json()),
-  transports: [new transports.Console()],
+export const logger = pino({
+  ...(process.env.NODE_ENV !== 'production' && { prettyPrint: { translateTime: true } }),
 });
 
-if (process.env.NODE_ENV === 'production') {
-  logger.configure({
-    transports: [new transports.File({ filename: 'express-ts.log', level: 'info' })],
-  });
-}
-
-export const winstonStream = {
+export const stream = {
   write(message: string) {
     logger.info(message);
   },

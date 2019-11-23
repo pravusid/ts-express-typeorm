@@ -5,9 +5,8 @@ import * as express from 'express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import 'reflect-metadata';
-import { connectToDatabase } from './config/database';
 import { errorHandler } from './lib/error.handlers';
-import { logger, winstonStream } from './lib/logger';
+import { logger, stream } from './lib/logger';
 import { configureRouter } from './router';
 
 export function configureApp(): express.Express {
@@ -17,7 +16,7 @@ export function configureApp(): express.Express {
   logger.info(`environment: ${env}`);
 
   app.use(helmet());
-  app.use(env === 'production' ? morgan('combined', { stream: winstonStream }) : morgan('dev'));
+  app.use(env === 'production' ? morgan('combined', { stream }) : morgan('dev'));
   app.use(cors({ exposedHeaders: ['Content-Disposition'] }));
 
   app.use(json());
@@ -26,8 +25,6 @@ export function configureApp(): express.Express {
 
   app.use(configureRouter());
   app.use(errorHandler);
-
-  connectToDatabase().then(() => logger.info('connected to database'));
 
   return app;
 }

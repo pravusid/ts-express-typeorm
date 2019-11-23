@@ -1,5 +1,6 @@
 import { configureApp } from './app';
 import { connectToDatabase, disconnectDatabase } from './config/database';
+import { keepAliveStatus } from './lib/keep.alive.handler';
 import { logger } from './lib/logger';
 
 require('dotenv').config();
@@ -29,5 +30,8 @@ server.on('error', (error: Error) => {
 
 process.on('SIGINT', () => {
   logger.info('프로세스를 종료합니다: SIGINT');
-  handleError();
+  keepAliveStatus.isDisable = true;
+  server.close(() => {
+    handleError();
+  });
 });

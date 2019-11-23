@@ -6,6 +6,7 @@ import * as helmet from 'helmet';
 import * as morgan from 'morgan';
 import 'reflect-metadata';
 import { errorHandler } from './lib/error.handlers';
+import { keepAliveHandler } from './lib/keep.alive.handler';
 import { logger, stream } from './lib/logger';
 import { configureRouter } from './router';
 
@@ -22,6 +23,7 @@ export function configureApp(): express.Express {
   app.use(json());
   app.use(urlencoded({ extended: false }));
   app.use(compression());
+  app.use(keepAliveHandler);
 
   app.use(configureRouter());
   app.use(errorHandler);

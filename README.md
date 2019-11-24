@@ -8,7 +8,7 @@ TypeScript & Express.js & TypeORM Example
 - `typeorm`
 - `class-validator`
 - `morgan`
-- `winston`
+- `pino`
 - `jest`(`ts-jest`)
 
 ## Linting & Formatting
@@ -20,4 +20,4 @@ TypeScript & Express.js & TypeORM Example
 
 TypeScript >= 3.5.0
 
-> concurrently & incremental build & nodemon
+> `concurrently` & incremental build & `nodemon`

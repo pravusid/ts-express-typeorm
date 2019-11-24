@@ -11,27 +11,28 @@ const server = configureApp().listen(PORT, () => {
   connectToDatabase().then(() => logger.info('connected to database'));
 });
 
-const handleError = (code = 0) => {
+const handleError = (error?: Error) => {
+  if (error) {
+    logger.error('FATAL ERROR', error);
+  }
+
+  const code = error ? 1 : 0;
+
   disconnectDatabase()
     .then(() => {
       logger.info('closed database connections');
       process.exit(code);
     })
-    .catch(error => {
-      logger.error(error);
+    .catch(dbError => {
+      logger.error(dbError);
       process.exit(1);
     });
 };
 
-server.on('error', (error: Error) => {
-  logger.error('FATAL ERROR', error);
-  handleError(1);
-});
+server.on('error', (error: Error) => handleError(error));
 
 process.on('SIGINT', () => {
   logger.info('프로세스를 종료합니다: SIGINT');
   keepAliveStatus.isDisable = true;
-  server.close(() => {
-    handleError();
-  });
+  server.close(error => handleError(error));
 });

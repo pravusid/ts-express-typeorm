@@ -59,9 +59,4 @@ typings/
 
 # Custom
 dist/
-.idea/
-.env
-ormconfig.json
-ormconfig.ts.json
-database.sh
 tsconfig.tsbuildinfo

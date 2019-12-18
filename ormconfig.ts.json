@@ -3,10 +3,10 @@
   "type": "mysql",
   "host": "localhost",
   "port": 3306,
-  "username": "test",
-  "password": "test",
-  "database": "test",
+  "username": "tsexpress",
+  "password": "1234",
+  "database": "tsexpress",
   "logging": true,
   "synchronize": true,
-  "entities": ["dist/domain/**/*.js"]
+  "entities": ["src/domain/**/*.ts"]
 }

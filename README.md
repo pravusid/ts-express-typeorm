@@ -21,3 +21,7 @@ TypeScript & Express.js & TypeORM Example
 TypeScript >= 3.5.0
 
 > `concurrently` & incremental build & `nodemon`
+
+## Run
+
+`./run-database.sh && pm2 start ecosystem.config.js`

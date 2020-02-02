@@ -4,7 +4,6 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
-import 'reflect-metadata';
 import { errorHandler } from './lib/error.handlers';
 import { keepAliveHandler } from './lib/keep.alive.handler';
 import { logger, stream } from './lib/logger';

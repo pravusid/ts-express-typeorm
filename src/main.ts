@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { configureApp } from './app';
 import { connectToDatabase, disconnectDatabase } from './config/database';
 import { keepAliveStatus } from './lib/keep.alive.handler';

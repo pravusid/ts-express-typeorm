@@ -5,7 +5,7 @@
   "author": "Sangdon Park <pravusid@gmail.com>",
   "main": "dist/main.js",
   "scripts": {
-    "apply": "npm ci --only=prod",
+    "ci:prod": "npm ci --only=prod",
     "prestart": "npm run clean && npm run build",
     "start": "NODE_ENV=production node dist/main.js",
     "build": "tsc",
@@ -13,7 +13,7 @@
     "dev": "npm run build && concurrently -p none \"tsc -w\" \"nodemon --watch dist --exec 'node -r source-map-support/register' dist/main.js\"",
     "dev:ts": "nodemon --watch src --exec 'ORM_ENV=ts ts-node' src/main.ts",
     "typecheck": "tsc --noEmit --diagnostics --incremental false",
-    "circular": "npm run clean && npm run build && madge --circular dist/",
+    "circular": "npm run prestart && madge --circular dist/",
     "lint": "eslint 'src/**/*'",
     "lint:fix": "eslint --fix 'src/**/*'",
     "test": "jest",

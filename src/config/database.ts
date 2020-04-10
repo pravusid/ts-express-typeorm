@@ -15,4 +15,4 @@ export const connectToDatabase = async (env?: string) => {
   );
 };
 
-export const disconnectDatabase = () => getConnection().close();
+export const disconnectFromDatabase = () => getConnection().close();

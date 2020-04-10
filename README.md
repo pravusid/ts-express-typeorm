@@ -4,6 +4,7 @@ TypeScript & Express.js & TypeORM Example
 
 ## Dependencies
 
+- `tsyringe` (dependency injection)
 - `express`
 - `typeorm`
 - `class-validator`

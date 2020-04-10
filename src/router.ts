@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { homeController } from './api/home.controller';
+import { container } from 'tsyringe';
+import { PostController } from './api/post.controller';
 
 export function configureRouter(): Router {
   const router = Router();
-  router.use(homeController.routes);
+
+  router.use(container.resolve(PostController).routes);
 
   return router;
 }

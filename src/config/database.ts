@@ -1,15 +1,14 @@
+import { join } from 'path';
 import { ConnectionOptionsReader, createConnection, getConnection } from 'typeorm';
 import { CustomNamingStrategy } from './custom.naming.strategy';
 
-export const connectToDatabase = async (env?: string) => {
-  const ormEnv = process.env.ORM_ENV;
-  const configName = env || ormEnv ? `ormconfig.${env || ormEnv}` : 'ormconfig';
-
-  const connectionOptions = new ConnectionOptionsReader({ configName }).all();
+export const connectToDatabase = async () => {
+  const connectionOptions = new ConnectionOptionsReader().all();
   const [connectionOption] = await connectionOptions;
 
   return createConnection(
     Object.assign(connectionOption, {
+      entities: [`${join(__dirname, '../')}/domain/**/*.{js,ts}`],
       namingStrategy: new CustomNamingStrategy(),
     }),
   );

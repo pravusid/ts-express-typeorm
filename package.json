@@ -1,7 +1,7 @@
 {
   "name": "ts-express-typeorm",
-  "version": "1.3.1",
-  "description": "typescript + tsyringe + express.js + typeorm",
+  "version": "1.3.2",
+  "description": "typescript + express.js + typeorm",
   "author": "Sangdon Park <pravusid@gmail.com>",
   "main": "dist/main.js",
   "scripts": {

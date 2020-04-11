@@ -10,7 +10,7 @@ import { logger } from './lib/logger';
 dotenv.config();
 
 /* eslint-disable no-console */
-function handleError(error?: Error) {
+function handleExit(error?: Error) {
   if (error) {
     console.error('FATAL ERROR', error);
   }
@@ -37,12 +37,12 @@ async function bootstrap() {
     logger.info(`listening on port ${PORT}`);
   });
 
-  server.on('error', handleError);
+  server.on('error', handleExit);
 
   process.on('SIGINT', () => {
     logger.info('프로세스를 종료합니다: SIGINT');
     keepAliveStatus.isDisable = true;
-    server.close(handleError);
+    server.close(handleExit);
   });
 }
 

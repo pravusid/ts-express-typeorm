@@ -8,7 +8,7 @@ export const connectToDatabase = async () => {
 
   return createConnection(
     Object.assign(connectionOption, {
-      entities: [`${join(__dirname, '../')}/domain/**/*.{js,ts}`],
+      entities: [`${join(__dirname, '..')}/domain/**/*.{js,ts}`],
       namingStrategy: new CustomNamingStrategy(),
     }),
   );

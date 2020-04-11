@@ -1,7 +1,20 @@
 import { Router } from 'express';
-import { container } from 'tsyringe';
+import { container, registry } from 'tsyringe';
 import { PostController } from './api/post.controller';
 
-export function configureRouter(): Router {
-  return Router().use(container.resolve(PostController).routes);
+export interface Controller {
+  routes: Router;
+}
+
+@registry([{ token: 'Controller', useToken: PostController }])
+export class ControllerRegistry {}
+
+export function configureRouter() {
+  const router = Router();
+
+  container.resolveAll<Controller>('Controller').forEach(ctrler => {
+    router.use(ctrler.routes);
+  });
+
+  return router;
 }

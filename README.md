@@ -21,9 +21,9 @@ TypeScript & Express.js & TypeORM Example
 
 ## LiveReload for development
 
-TypeScript >= 3.5.0
+> TypeScript >= 3.5.0
 
-> `concurrently` & incremental build & `nodemon`
+`concurrently` & incremental build & `nodemon`
 
 ## Run
 

@@ -12,6 +12,7 @@
     "clean": "rimraf tsconfig.tsbuildinfo && rimraf dist",
     "dev": "npm run build && concurrently -p none \"tsc -w\" \"nodemon --watch dist --exec 'node -r source-map-support/register' dist/main.js\"",
     "dev:ts": "nodemon --watch src --exec 'ts-node' src/main.ts",
+    "dev:kill": "pgrep -fl nodemon | awk '{print $1}' | xargs -r -I{} kill -2 {} && lsof -ti :8080 | xargs -r -I{} kill {}",
     "typecheck": "tsc --noEmit --diagnostics --incremental false",
     "circular": "npm run prestart && madge --circular dist/",
     "lint": "eslint 'src/**/*'",

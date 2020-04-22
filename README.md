@@ -4,6 +4,8 @@ TypeScript & Express.js & TypeORM Example
 
 ## Dependencies
 
+> nodejs >= 12.14.0
+
 - `tsyringe` (dependency injection)
 - `express`
 - `typeorm`

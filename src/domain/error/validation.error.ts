@@ -1,13 +1,8 @@
-import { ValidationErrors } from '../../lib/validator';
+import { ValidationError } from 'class-validator';
 import { CustomExternalError } from './custom.external.error';
 
-export class ValidationError extends CustomExternalError {
-  constructor(errors: ValidationErrors) {
-    super([
-      ...errors.map(x => {
-        const [value] = Object.values(x);
-        return value;
-      }),
-    ]);
+export class CustomValidationError extends CustomExternalError {
+  constructor(errors: ValidationError[]) {
+    super(errors.flatMap(e => Object.values(e.constraints ? e?.constraints : [])));
   }
 }

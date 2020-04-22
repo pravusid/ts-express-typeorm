@@ -1,13 +1,12 @@
 import { validate } from 'class-validator';
-import { ValidationError } from '../domain/error/validation.error';
-
-export type ValidationErrors = { [error: string]: string }[];
+import { CustomValidationError } from '../domain/error/validation.error';
 
 export const validation = async <T>(arg: T): Promise<T> => {
   const errors = await validate(arg);
-  const result = [...errors.map(e => e.constraints)];
-  if (result.length > 0) {
-    throw new ValidationError(result);
+
+  if (errors.length > 0) {
+    throw new CustomValidationError(errors);
   }
+
   return arg;
 };

@@ -10,7 +10,7 @@ import { logger } from './lib/logger';
 dotenv.config();
 
 /* eslint-disable no-console */
-function handleExit(error?: Error) {
+function handleExit(error?: Error): void {
   if (error) {
     console.error('FATAL ERROR', error);
   }
@@ -26,7 +26,7 @@ function handleExit(error?: Error) {
     });
 }
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const { PORT } = process.env;
 
   const connection = await connectToDatabase();

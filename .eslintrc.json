@@ -16,17 +16,20 @@
     "class-methods-use-this": "off",
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "no-empty-function": "off",
+    "no-return-await": "off",
     "no-undef": "off",
     "no-useless-constructor": "off",
+    "require-await": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/await-thenable": "warn",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
     "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/no-parameter-properties": "off",
-    "@typescript-eslint/no-useless-constructor": ["error"]
+    "@typescript-eslint/no-useless-constructor": "error",
+    "@typescript-eslint/require-await": "warn",
+    "@typescript-eslint/return-await": ["warn", "in-try-catch"]
   },
   "overrides": [
     {

@@ -4,7 +4,7 @@ import { CustomInternalError } from '../domain/error/custom.internal.error';
 import { ErrorCode } from '../domain/error/error.code';
 import { logger } from './logger';
 
-export const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction) => {
+export const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction): void => {
   if (error instanceof CustomExternalError) {
     response.status(error.statusCode).json({ errors: error.messages });
   } else {
@@ -19,7 +19,7 @@ export const errorHandler = (error: Error, request: Request, response: Response,
   next();
 };
 
-type AsyncFunc = (req: Request, resp: Response, next: NextFunction) => Promise<any>;
+type AsyncFunc = (req: Request, resp: Response, next: NextFunction) => Promise<void>;
 
-export const asyncHandler: (func: AsyncFunc) => AsyncFunc = func => (request, response, next) =>
+export const asyncHandler: (func: AsyncFunc) => AsyncFunc = func => (request, response, next): Promise<void> =>
   Promise.resolve(func(request, response, next)).catch((error: Error) => errorHandler(error, request, response, next));

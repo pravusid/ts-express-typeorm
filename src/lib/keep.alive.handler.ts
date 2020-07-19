@@ -4,7 +4,7 @@ export const keepAliveStatus = {
   isDisable: false,
 };
 
-export const keepAliveHandler = (request: Request, response: Response, next: NextFunction) => {
+export const keepAliveHandler = (request: Request, response: Response, next: NextFunction): void => {
   if (keepAliveStatus.isDisable) {
     response.set('Connection', 'close');
   }

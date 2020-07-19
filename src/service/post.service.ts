@@ -12,7 +12,7 @@ export class PostService {
     this.postRepository = connection.getRepository(Post);
   }
 
-  async getPost(id: string) {
+  async getPost(id: string): Promise<Post> {
     try {
       const post = await this.postRepository.findOneOrFail(id);
       return post;
@@ -21,7 +21,7 @@ export class PostService {
     }
   }
 
-  createPost(newPost: Post) {
+  createPost(newPost: Post): Promise<Post> {
     return this.postRepository.save(newPost);
   }
 }

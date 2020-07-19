@@ -9,7 +9,7 @@ export interface Controller {
 @registry([{ token: 'Controller', useToken: PostController }])
 export class ControllerRegistry {}
 
-export function configureRouter() {
+export function configureRouter(): Router {
   const router = Router();
 
   container.resolveAll<Controller>('Controller').forEach(ctrler => {

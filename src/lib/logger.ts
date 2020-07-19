@@ -5,7 +5,7 @@ export const logger = pino({
 });
 
 export const stream = {
-  write(message: string) {
+  write(message: string): void {
     logger.info(message);
   },
 };

@@ -1,8 +1,8 @@
 import { join } from 'path';
-import { ConnectionOptionsReader, createConnection, getConnection } from 'typeorm';
+import { ConnectionOptionsReader, createConnection, getConnection, Connection } from 'typeorm';
 import { CustomNamingStrategy } from './custom.naming.strategy';
 
-export const connectToDatabase = async () => {
+export const connectToDatabase = async (): Promise<Connection> => {
   const connectionOptions = new ConnectionOptionsReader().all();
   const [connectionOption] = await connectionOptions;
 
@@ -14,4 +14,4 @@ export const connectToDatabase = async () => {
   );
 };
 
-export const disconnectFromDatabase = () => getConnection().close();
+export const disconnectFromDatabase = (): Promise<void> => getConnection().close();

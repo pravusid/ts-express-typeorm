@@ -57,6 +57,5 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# Custom
+# Out
 dist/
-tsconfig.tsbuildinfo

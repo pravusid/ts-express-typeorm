@@ -10,8 +10,8 @@ export class PostController {
   readonly routes = Router();
 
   constructor(@inject(PostService) private postService: PostService) {
-    this.routes.get('/:id', this.getPost);
-    this.routes.post('/', this.savePost);
+    this.routes.get('/post/:id', this.getPost);
+    this.routes.post('/post', this.savePost);
   }
 
   private getPost = asyncHandler(async (req: Request, resp: Response) => {

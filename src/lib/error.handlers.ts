@@ -8,12 +8,10 @@ export const errorHandler = (error: Error, request: Request, response: Response,
   if (error instanceof CustomExternalError) {
     response.status(error.statusCode).json({ errors: error.messages });
   } else {
-    if (error instanceof CustomInternalError) {
-      logger.error(ErrorCode.INTERNAL_ERROR, {
-        errorMessage: error.message,
-        stack: error.stackArray,
-      });
-    }
+    logger.error(ErrorCode.INTERNAL_ERROR, {
+      errorMessage: error.message,
+      stack: error instanceof CustomInternalError ? error.stackArray : error.stack,
+    });
     response.status(500).json({ message: ErrorCode.INTERNAL_ERROR });
   }
   next();

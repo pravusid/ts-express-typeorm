@@ -6,10 +6,10 @@ export class PingController {
   readonly routes = Router();
 
   constructor() {
-    this.routes.get('/ping', this.getPost);
+    this.routes.get('/ping', this.ping);
   }
 
-  private getPost = (req: Request, resp: Response): void => {
+  private ping = (req: Request, resp: Response): void => {
     resp.json({ message: 'pong' });
   };
 }

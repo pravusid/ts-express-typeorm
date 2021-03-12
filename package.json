@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "faker": "^4.1.0",
     "jest": "^26.2.2",
-    "madge": "^3.9.2",
+    "madge": "^4.0.1",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "source-map-support": "^0.5.19",

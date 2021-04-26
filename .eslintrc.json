@@ -6,17 +6,13 @@
   "env": {
     "node": true
   },
-  "extends": [
-    "airbnb-base",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
-  ],
+  "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "rules": {
     "class-methods-use-this": "off",
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "no-empty-function": "off",
     "no-return-await": "off",
+    "no-shadow": "off",
     "no-undef": "off",
     "no-useless-constructor": "off",
     "require-await": "off",
@@ -27,6 +23,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
     "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-shadow": "warn",
     "@typescript-eslint/no-useless-constructor": "error",
     "@typescript-eslint/require-await": "warn",
     "@typescript-eslint/return-await": ["warn", "in-try-catch"]

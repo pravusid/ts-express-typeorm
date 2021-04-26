@@ -1,4 +1,4 @@
-import { inject, singleton } from 'tsyringe';
+import { singleton } from 'tsyringe';
 import { Connection, Repository } from 'typeorm';
 import { CustomExternalError } from '../domain/error/custom.external.error';
 import { ErrorCode } from '../domain/error/error.code';
@@ -8,7 +8,7 @@ import { Post } from '../domain/post';
 export class PostService {
   private postRepository: Repository<Post>;
 
-  constructor(@inject(Connection) connection: Connection) {
+  constructor(connection: Connection) {
     this.postRepository = connection.getRepository(Post);
   }
 

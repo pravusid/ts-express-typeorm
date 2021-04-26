@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { inject, singleton } from 'tsyringe';
+import { singleton } from 'tsyringe';
 import { Post } from '../domain/post';
 import { asyncHandler } from '../lib/error.handlers';
 import { validation } from '../lib/validator';
@@ -9,7 +9,7 @@ import { PostService } from '../service/post.service';
 export class PostController {
   readonly routes = Router();
 
-  constructor(@inject(PostService) private postService: PostService) {
+  constructor(private postService: PostService) {
     this.routes.get('/post/:id', this.getPost);
     this.routes.post('/post', this.savePost);
   }

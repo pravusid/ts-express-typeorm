@@ -4,28 +4,42 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
+import { singleton } from 'tsyringe';
+import { AppRouter } from './app.router';
 import { errorHandler } from './lib/error.handlers';
 import { keepAliveHandler } from './lib/keep.alive.handler';
-import { logger, stream } from './lib/logger';
-import { configureRouter } from './router';
+import { logger } from './lib/logger';
 
-export function configureApp(): express.Express {
-  const app = express();
+@singleton()
+export class App {
+  readonly server = express();
 
-  const env = app.get('env');
-  logger.info(`environment: ${env}`);
+  constructor({ routes }: AppRouter) {
+    const { server } = this;
 
-  app.use(helmet());
-  app.use(env === 'production' ? morgan('combined', { stream }) : morgan('dev'));
-  app.use(cors({ exposedHeaders: ['Content-Disposition'] }));
+    const env = server.get('env');
+    logger.info(`environment: ${env}`);
 
-  app.use(json());
-  app.use(urlencoded({ extended: false }));
-  app.use(compression());
-  app.use(keepAliveHandler);
+    server.use(helmet());
+    server.use(
+      env === 'production'
+        ? morgan('combined', {
+            stream: {
+              write(message: string): void {
+                logger.info(message);
+              },
+            },
+          })
+        : morgan('dev'),
+    );
+    server.use(cors({ exposedHeaders: ['Content-Disposition'] }));
 
-  app.use(configureRouter());
-  app.use(errorHandler);
+    server.use(json());
+    server.use(urlencoded({ extended: false }));
+    server.use(compression());
+    server.use(keepAliveHandler);
 
-  return app;
+    server.use(routes);
+    server.use(errorHandler);
+  }
 }

@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { Connection } from 'typeorm';
-import { configureApp } from './app';
+import { App } from './app';
 import { connectToDatabase } from './config/database';
 import { keepAliveStatus } from './lib/keep.alive.handler';
 import { logger } from './lib/logger';
@@ -36,7 +36,7 @@ async function bootstrap(): Promise<void> {
   container.register(Connection, { useValue: connection });
   logger.info('database connection is established');
 
-  const server = configureApp().listen(PORT, () => {
+  const server = container.resolve(App).server.listen(PORT, () => {
     logger.info(`listening on port ${PORT}`);
   });
 

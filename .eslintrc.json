@@ -10,6 +10,7 @@
   "rules": {
     "class-methods-use-this": "off",
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "max-classes-per-file": "off",
     "no-empty-function": "off",
     "no-return-await": "off",
     "no-shadow": "off",

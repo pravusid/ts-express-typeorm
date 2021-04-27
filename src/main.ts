@@ -3,19 +3,22 @@ import 'reflect-metadata';
 import { container } from 'tsyringe';
 import { Connection } from 'typeorm';
 import { configureApp } from './app';
-import { connectToDatabase, disconnectFromDatabase } from './config/database';
+import { connectToDatabase } from './config/database';
 import { keepAliveStatus } from './lib/keep.alive.handler';
 import { logger } from './lib/logger';
 
+/* eslint-disable no-console */
+
 dotenv.config();
 
-/* eslint-disable no-console */
 function handleExit(error?: Error): void {
   if (error) {
     console.error('FATAL ERROR', error);
   }
 
-  disconnectFromDatabase()
+  container
+    .resolve(Connection)
+    .close()
     .then(() => {
       console.info('database connection is closed');
       process.exit(error ? 1 : 0);

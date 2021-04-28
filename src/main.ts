@@ -4,27 +4,25 @@ import { container } from 'tsyringe';
 import { Connection } from 'typeorm';
 import { App } from './app';
 import { connectToDatabase } from './config/database';
-import { keepAliveStatus } from './lib/keep.alive.handler';
-import { logger } from './lib/logger';
 
 /* eslint-disable no-console */
 
 dotenv.config();
 
-function handleExit(error?: Error): void {
+function handleExit(app: App, error?: Error): void {
   if (error) {
     console.error('FATAL ERROR', error);
+  } else {
+    console.log('프로세스를 종료합니다');
   }
 
-  container
-    .resolve(Connection)
-    .close()
+  app
+    .onClose()
     .then(() => {
-      console.info('database connection is closed');
       process.exit(error ? 1 : 0);
     })
-    .catch(dbError => {
-      console.error(dbError);
+    .catch(errorOnClose => {
+      console.error(errorOnClose);
       process.exit(1);
     });
 }
@@ -33,19 +31,14 @@ async function bootstrap(): Promise<void> {
   const { PORT } = process.env;
 
   const connection = await connectToDatabase();
-  container.register(Connection, { useValue: connection });
-  logger.info('database connection is established');
+  container.registerInstance(Connection, connection);
 
-  const server = container.resolve(App).server.listen(PORT, () => {
-    logger.info(`listening on port ${PORT}`);
-  });
-
-  server.on('error', handleExit);
+  const app = container.resolve(App);
+  const server = app.init(Number(PORT) || 8080).on('error', error => handleExit(app, error));
 
   process.on('SIGINT', () => {
-    logger.info('프로세스를 종료합니다: SIGINT');
-    keepAliveStatus.isDisable = true;
-    server.close(handleExit);
+    app.beforeClose();
+    server.close(error => handleExit(app, error));
   });
 }
 

@@ -3,18 +3,21 @@ import * as compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as helmet from 'helmet';
+import { Server } from 'http';
 import * as morgan from 'morgan';
 import { singleton } from 'tsyringe';
+import { Connection } from 'typeorm';
 import { AppRouter } from './app.router';
 import { errorHandler } from './lib/error.handlers';
-import { keepAliveHandler } from './lib/keep.alive.handler';
 import { logger } from './lib/logger';
 
 @singleton()
 export class App {
-  readonly server = express();
+  private readonly server = express();
 
-  constructor({ routes }: AppRouter) {
+  private isKeepAliveDisabled = false;
+
+  constructor({ routes }: AppRouter, private connection: Connection) {
     const { server } = this;
 
     const env = server.get('env');
@@ -37,9 +40,31 @@ export class App {
     server.use(json());
     server.use(urlencoded({ extended: false }));
     server.use(compression());
-    server.use(keepAliveHandler);
+    server.use((request, response, next): void => {
+      if (this.isKeepAliveDisabled) {
+        response.set('Connection', 'close');
+      }
+      next();
+    });
 
     server.use(routes);
     server.use(errorHandler);
+  }
+
+  init(port: number): Server {
+    return this.server.listen(port, () => {
+      logger.info(`listening on port ${port}`);
+    });
+  }
+
+  beforeClose(): void {
+    this.isKeepAliveDisabled = true;
+  }
+
+  onClose(): Promise<unknown> {
+    return Promise.all([
+      //
+      this.connection.close().then(() => logger.info('database connection is closed')),
+    ]);
   }
 }

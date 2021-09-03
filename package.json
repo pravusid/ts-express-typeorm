@@ -1,6 +1,6 @@
 {
   "name": "ts-express-typeorm",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "typescript + express.js + typeorm",
   "author": "Sangdon Park",
   "main": "dist/main.js",
@@ -13,7 +13,7 @@
     "dev": "npm run build && concurrently -p none \"tsc -w\" \"nodemon --watch dist --exec 'node -r source-map-support/register' dist/main.js\"",
     "dev:ts": "nodemon --watch src --exec 'ts-node' src/main.ts",
     "dev:kill": "pgrep -fl nodemon | awk '{print $1}' | xargs -r -I{} kill -2 {} && lsof -ti :8080 | xargs -r -I{} kill {}",
-    "typecheck": "tsc --noEmit --diagnostics --incremental false --tsBuildInfoFile null",
+    "typecheck": "tsc --noEmit --diagnostics --incremental false --tsBuildInfoFile null --skipLibCheck",
     "circular": "npm run prestart && madge --circular dist/",
     "lint": "eslint 'src/**/*'",
     "lint:fix": "eslint --fix 'src/**/*'",
@@ -45,6 +45,7 @@
     "rimraf": "^3.0.2",
     "tsyringe": "^4.6.0",
     "typeorm": "^0.2.37",
+    "typeorm-naming-strategies": "^2.0.0",
     "typescript": "^4.4.2"
   },
   "devDependencies": {

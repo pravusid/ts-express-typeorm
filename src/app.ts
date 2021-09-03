@@ -6,7 +6,6 @@ import * as helmet from 'helmet';
 import { Server } from 'http';
 import * as morgan from 'morgan';
 import { singleton } from 'tsyringe';
-import { Connection } from 'typeorm';
 import { AppRouter } from './app.router';
 import { errorHandler } from './lib/error.handlers';
 import { logger } from './lib/logger';
@@ -17,7 +16,7 @@ export class App {
 
   private isKeepAliveDisabled = false;
 
-  constructor({ routes }: AppRouter, private connection: Connection) {
+  constructor({ routes }: AppRouter) {
     const { server } = this;
 
     const env = server.get('env');
@@ -51,20 +50,16 @@ export class App {
     server.use(errorHandler);
   }
 
-  init(port: number): Server {
-    return this.server.listen(port, () => {
+  init(port?: string): Server {
+    if (!port) {
+      throw new Error('Port is undefined');
+    }
+    return this.server.listen(parseInt(port, 10), () => {
       logger.info(`listening on port ${port}`);
     });
   }
 
-  beforeClose(): void {
+  close(): void {
     this.isKeepAliveDisabled = true;
-  }
-
-  onClose(): Promise<unknown> {
-    return Promise.all([
-      //
-      this.connection.close().then(() => logger.info('database connection is closed')),
-    ]);
   }
 }

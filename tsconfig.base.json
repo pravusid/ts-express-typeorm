@@ -8,6 +8,7 @@
     "removeComments": true,
     "strict": true,
     "strictPropertyInitialization": false,
+    "noImplicitOverride": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   }

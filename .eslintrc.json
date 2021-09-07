@@ -6,7 +6,12 @@
   "env": {
     "node": true
   },
-  "extends": ["airbnb-base", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "class-methods-use-this": "off",
     "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
@@ -21,7 +26,7 @@
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "@typescript-eslint/await-thenable": "warn",
-    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-shadow": "warn",

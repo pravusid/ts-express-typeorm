@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import 'reflect-metadata';
-import { AppModule } from './app.module';
+import { Container } from './container';
 
 /* eslint-disable no-console */
 
@@ -14,7 +14,7 @@ async function handleExit(error?: Error): Promise<void> {
   }
 
   try {
-    await AppModule.destroy();
+    await Container.destroy();
     process.exit(error ? 1 : 0);
   } catch (errorOnClose) {
     console.error(errorOnClose);
@@ -25,7 +25,7 @@ async function handleExit(error?: Error): Promise<void> {
 async function bootstrap(): Promise<void> {
   const { PORT } = process.env;
 
-  const app = await AppModule.create();
+  const app = await Container.create();
   const server = app.init(PORT).on('error', handleExit);
 
   process.on('SIGINT', () => {

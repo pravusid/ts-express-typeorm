@@ -5,10 +5,9 @@ import { PostController } from './api/post.controller';
 import { App } from './app';
 import { Controller } from './app.router';
 import { database } from './config/database';
+import { logger } from './lib/logger';
 
-/* eslint-disable no-console */
-
-export class AppModule {
+export class Container {
   static async create(): Promise<App> {
     await Promise.all([
       //
@@ -34,11 +33,11 @@ export class AppModule {
   private static async initDatabase() {
     const connection = await database.connect();
     container.registerInstance(Connection, connection);
-    console.log('database connection is established');
+    logger.info('database connection is established');
   }
 
   private static async closeDatabase() {
     await container.resolve(Connection).close();
-    console.log('database connection is closed');
+    logger.info('database connection is closed');
   }
 }

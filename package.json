@@ -1,6 +1,6 @@
 {
   "name": "ts-express-typeorm",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "typescript + express.js + typeorm",
   "author": "Sangdon Park",
   "main": "dist/main.js",

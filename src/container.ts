@@ -1,4 +1,5 @@
 import { container } from 'tsyringe';
+import type { constructor } from 'tsyringe/dist/typings/types';
 import { Connection } from 'typeorm';
 import { PingController } from './api/ping.controller';
 import { PostController } from './api/post.controller';
@@ -26,8 +27,11 @@ export class Container {
   }
 
   private static initController() {
-    container.registerSingleton(Controller, PingController);
-    container.registerSingleton(Controller, PostController);
+    Array.from<constructor<Controller>>([
+      //
+      PingController,
+      PostController,
+    ]).map(cls => container.registerType(Controller, cls));
   }
 
   private static async initDatabase() {

@@ -6,17 +6,13 @@
     "source.addMissingImports",
     "source.organizeImports"
   ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "javascript.format.enable": false,
   "typescript.format.enable": false,
   "javascript.validate.enable": false,
+  "eslint.packageManager": "pnpm",
   "eslint.validate": [
     "javascript",
     "typescript"

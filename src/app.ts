@@ -3,7 +3,6 @@ import * as compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as helmet from 'helmet';
-import { Server } from 'http';
 import * as morgan from 'morgan';
 import { singleton } from 'tsyringe';
 import { AppRouter } from './app.router';
@@ -12,7 +11,7 @@ import { logger } from './lib/logger';
 
 @singleton()
 export class App {
-  private readonly server = express();
+  readonly server = express();
 
   private isKeepAliveDisabled = false;
 
@@ -48,15 +47,6 @@ export class App {
 
     server.use(routes);
     server.use(errorHandler);
-  }
-
-  init(port?: string): Server {
-    if (!port) {
-      throw new Error('Port is undefined');
-    }
-    return this.server.listen(parseInt(port, 10), () => {
-      logger.info(`listening on port ${port}`);
-    });
   }
 
   close(): void {

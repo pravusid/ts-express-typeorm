@@ -11,10 +11,5 @@
   "files.trimFinalNewlines": true,
   "javascript.format.enable": false,
   "typescript.format.enable": false,
-  "javascript.validate.enable": false,
-  "eslint.packageManager": "pnpm",
-  "eslint.validate": [
-    "javascript",
-    "typescript"
-  ]
+  "javascript.validate.enable": false
 }

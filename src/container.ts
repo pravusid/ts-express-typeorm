@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 import type { constructor } from 'tsyringe/dist/typings/types';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { PingController } from './api/ping.controller';
 import { PostController } from './api/post.controller';
 import { App } from './app';
@@ -35,13 +35,13 @@ export class Container {
   }
 
   private static async connectToDatabase() {
-    const connection = await database.connect();
-    container.registerInstance(Connection, connection);
+    const dataSource = await database.init();
+    container.registerInstance(DataSource, dataSource);
     logger.info('database connection is established');
   }
 
   private static async closeDatabase() {
-    await container.resolve(Connection).close();
+    await container.resolve(DataSource).destroy();
     logger.info('database connection is closed');
   }
 }

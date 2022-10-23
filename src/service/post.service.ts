@@ -1,5 +1,5 @@
 import { singleton } from 'tsyringe';
-import { Connection, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { CustomExternalError } from '../domain/error/custom.external.error';
 import { ErrorCode } from '../domain/error/error.code';
 import { Post } from '../domain/post';
@@ -8,13 +8,13 @@ import { Post } from '../domain/post';
 export class PostService {
   private postRepository: Repository<Post>;
 
-  constructor(connection: Connection) {
-    this.postRepository = connection.getRepository(Post);
+  constructor(ds: DataSource) {
+    this.postRepository = ds.getRepository(Post);
   }
 
-  async getPost(id: string): Promise<Post> {
+  async getPost(id: number): Promise<Post> {
     try {
-      const post = await this.postRepository.findOneOrFail(id);
+      const post = await this.postRepository.findOneOrFail({ where: { id } });
       return post;
     } catch {
       throw new CustomExternalError([ErrorCode.ARTICLE_NOT_FOUND], 404);

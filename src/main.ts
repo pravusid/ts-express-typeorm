@@ -1,10 +1,8 @@
-import * as dotenv from 'dotenv';
 import 'reflect-metadata';
+import { envs } from './config/environments';
 import { Container } from './container';
 
 /* eslint-disable no-console */
-
-dotenv.config();
 
 function handleExit(error?: Error): void {
   Container.destroy()
@@ -23,13 +21,10 @@ function handleExit(error?: Error): void {
 }
 
 async function bootstrap(): Promise<void> {
-  const { PORT } = process.env;
-  const port = Number(PORT ?? 8080);
-
   const app = await Container.create();
   const server = app.server
-    .listen(port, () => {
-      console.log(`listening on port ${port} 🚀`);
+    .listen(envs.port, () => {
+      console.log(`listening on port ${envs.port} 🚀`);
     })
     .on('error', handleExit);
 

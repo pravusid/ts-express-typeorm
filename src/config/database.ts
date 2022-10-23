@@ -1,17 +1,23 @@
 import { join } from 'path';
-import { Connection, ConnectionOptionsReader, createConnection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { envs } from './environments';
 
 export const database = {
-  connect: async (): Promise<Connection> => {
-    const reader = new ConnectionOptionsReader();
-    const [connectionOption] = await reader.all();
-
-    return createConnection(
-      Object.assign(connectionOption, {
-        entities: [`${join(__dirname, '..')}/domain/**/*.{js,ts}`],
-        namingStrategy: new SnakeNamingStrategy(),
-      }),
-    );
+  init: (): Promise<DataSource> => {
+    const ds = new DataSource({
+      name: 'default',
+      type: 'mysql',
+      host: envs.db.host,
+      port: envs.db.port,
+      username: envs.db.username,
+      password: envs.db.password,
+      database: envs.db.database,
+      logging: true,
+      synchronize: true,
+      entities: [`${join(__dirname, '..')}/domain/**/*.{js,ts}`],
+      namingStrategy: new SnakeNamingStrategy(),
+    });
+    return ds.initialize();
   },
 };

@@ -3,13 +3,13 @@ import { singleton } from 'tsyringe';
 
 @singleton()
 export class PingController {
-  readonly routes = Router();
+  readonly routes: Router = Router();
 
   constructor() {
     this.routes.get('/ping', this.ping);
   }
 
-  private ping = (req: Request, resp: Response): void => {
-    resp.json({ message: 'pong' });
+  private ping = (req: Request, res: Response) => {
+    return res.json({ message: 'pong' });
   };
 }

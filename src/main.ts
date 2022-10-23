@@ -33,13 +33,13 @@ async function bootstrap(): Promise<void> {
     })
     .on('error', handleExit);
 
-  const shutdownHandler = () => {
+  const handleShutdown = () => {
     app.close();
     server.close(handleExit);
   };
 
-  process.once('SIGINT', shutdownHandler);
-  process.once('SIGTERM', shutdownHandler);
+  process.once('SIGINT', handleShutdown);
+  process.once('SIGTERM', handleShutdown);
 }
 
 bootstrap();

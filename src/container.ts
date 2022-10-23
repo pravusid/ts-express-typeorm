@@ -11,9 +11,9 @@ import { logger } from './lib/logger';
 export class Container {
   static async create(): Promise<App> {
     await Promise.all([
+      this.loadControllers(),
+      this.connectToDatabase(),
       //
-      this.initController(),
-      this.initDatabase(),
     ]);
 
     return container.resolve(App);
@@ -21,20 +21,20 @@ export class Container {
 
   static async destroy(): Promise<void> {
     await Promise.all([
-      //
       this.closeDatabase(),
+      //
     ]);
   }
 
-  private static initController() {
+  private static loadControllers() {
     Array.from<constructor<Controller>>([
-      //
       PingController,
       PostController,
+      //
     ]).map(cls => container.registerType(Controller, cls));
   }
 
-  private static async initDatabase() {
+  private static async connectToDatabase() {
     const connection = await database.connect();
     container.registerInstance(Connection, connection);
     logger.info('database connection is established');

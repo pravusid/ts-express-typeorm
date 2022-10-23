@@ -2,7 +2,7 @@ import { json, urlencoded } from 'body-parser';
 import * as compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 import * as morgan from 'morgan';
 import { singleton } from 'tsyringe';
 import { AppRouter } from './app.router';
@@ -11,7 +11,7 @@ import { logger } from './lib/logger';
 
 @singleton()
 export class App {
-  readonly server = express();
+  readonly server: express.Express = express();
 
   private isKeepAliveDisabled = false;
 

@@ -4,14 +4,21 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug TypeScript in Node.js",
+      "name": "Debug: TypeScript in Node.js",
       "preLaunchTask": "npm: build",
       "program": "${workspaceFolder}/src/main.ts",
       "cwd": "${workspaceFolder}",
-      "protocol": "inspector",
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
       ]
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Debug: Nodemon, TypeScript",
+      "port": 9229,
+      "restart": true,
+      "sourceMaps": true
     }
   ]
 }

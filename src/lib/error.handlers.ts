@@ -17,11 +17,11 @@ export const errorHandler = (error: Error, request: Request, response: Response,
   next();
 };
 
-type AsyncFunc = (req: Request, resp: Response, next: NextFunction) => Promise<void>;
+type AsyncFunc = (req: Request, resp: Response, next: NextFunction) => Promise<unknown>;
 
 export const asyncHandler: (func: AsyncFunc) => AsyncFunc =
   func =>
-  (request, response, next): Promise<void> =>
+  (request, response, next): Promise<unknown> =>
     Promise.resolve(func(request, response, next)).catch((error: Error) =>
       errorHandler(error, request, response, next),
     );

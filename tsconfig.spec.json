@@ -1,8 +1,18 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": ["jest", "node"],
+    "types": [
+      "jest",
+      "node"
+    ],
     "strict": false
   },
-  "include": ["src/**/*.spec.*", "*.js"]
+  "include": [
+    "src/**/*.spec.*",
+    "src/**/__mocks__/**/*",
+    "src/**/__tests__/**/*",
+    "test/**/*",
+    "types/**/*",
+    "*.js"
+  ]
 }

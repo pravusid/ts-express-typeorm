@@ -2,7 +2,7 @@ import { singleton } from 'tsyringe';
 import { DataSource, Repository } from 'typeorm';
 import { CustomExternalError } from '../domain/error/custom.external.error';
 import { ErrorCode } from '../domain/error/error.code';
-import { Post } from '../domain/post';
+import { Post, PostCreateInput } from '../domain/post';
 
 @singleton()
 export class PostService {
@@ -17,11 +17,11 @@ export class PostService {
       const post = await this.postRepository.findOneOrFail({ where: { id } });
       return post;
     } catch {
-      throw new CustomExternalError([ErrorCode.ARTICLE_NOT_FOUND], 404);
+      throw new CustomExternalError([ErrorCode.ARTICLE_NOT_FOUND]);
     }
   }
 
-  createPost(newPost: Post): Promise<Post> {
+  createPost(newPost: PostCreateInput): Promise<Post> {
     return this.postRepository.save(newPost);
   }
 }

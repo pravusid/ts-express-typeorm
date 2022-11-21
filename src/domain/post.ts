@@ -1,21 +1,19 @@
-import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+export type PostCreateInput = Pick<Post, 'title' | 'author' | 'content'>;
 
 @Entity()
 export class Post {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  @IsNotEmpty()
+  @Column({ nullable: false })
   title: string;
 
-  @Column()
-  @IsNotEmpty()
+  @Column({ nullable: false })
   author: string;
 
-  @Column({ type: 'text' })
-  @IsNotEmpty()
+  @Column({ nullable: false, type: 'text' })
   content: string;
 
   constructor(args?: { title: string; author: string; content: string }) {

@@ -1,8 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { singleton } from 'tsyringe';
-import { Post } from '../domain/post';
+import { PostCreateDto } from '../dto/post.create.dto';
 import { asyncHandler } from '../lib/error.handlers';
-import { validate } from '../lib/validator';
 import { PostService } from '../service/post.service';
 
 @singleton()
@@ -23,9 +22,9 @@ export class PostController {
   });
 
   private savePost = asyncHandler(async (req: Request, res: Response) => {
-    const newPost = await validate(new Post(req.body));
+    const dto = await new PostCreateDto(req.body).throw();
 
-    const created = await this.postService.createPost(newPost);
+    const created = await this.postService.createPost(dto.toEntity());
 
     return res.status(201).json({ id: created.id });
   });

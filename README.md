@@ -8,6 +8,9 @@ TypeScript & Express.js & TypeORM Example
 
 - `tsyringe` (dependency injection)
 - `express`
+- `graphql`
+- `type-graphql`
+- `@apollo/server`
 - `typeorm`
 - `class-validator`
 - `morgan`

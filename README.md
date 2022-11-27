@@ -1,6 +1,6 @@
 # ts-express-typeorm
 
-TypeScript & Express.js & TypeORM Example
+TypeScript & Express.js & TypeORM & GraphQL Example
 
 ## Dependencies
 

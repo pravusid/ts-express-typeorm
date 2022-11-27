@@ -1,9 +1,6 @@
 import { Router } from 'express';
 import { injectAll, singleton } from 'tsyringe';
-
-export class Controller {
-  routes: Router;
-}
+import { Controller } from './types';
 
 @singleton()
 export class AppRouter {

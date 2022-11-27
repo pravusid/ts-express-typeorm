@@ -1,21 +1,23 @@
+import { GraphQLSchema } from 'graphql';
 import { container } from 'tsyringe';
-import type { constructor } from 'tsyringe/dist/typings/types';
+import { buildSchema } from 'type-graphql';
 import { DataSource } from 'typeorm';
 import { PingController } from './api/ping.controller';
 import { PostController } from './api/post.controller';
 import { App } from './app';
-import { Controller } from './app.router';
 import { database } from './config/database';
+import { PostFieldResolver, PostResolver } from './graphql/post.resolver';
 import { logger } from './lib/logger';
+import { Constructor, Controller } from './types';
 
 export class Container {
   static async create(): Promise<App> {
     await Promise.all([
       this.loadControllers(),
+      this.loadGraphQLSchema(),
       this.connectToDatabase(),
       //
     ]);
-
     return container.resolve(App);
   }
 
@@ -27,11 +29,26 @@ export class Container {
   }
 
   private static loadControllers() {
-    Array.from<constructor<Controller>>([
+    Array.from<Constructor<Controller>>([
       PingController,
       PostController,
       //
     ]).map(cls => container.registerType(Controller, cls));
+  }
+
+  private static async loadGraphQLSchema() {
+    const schema = await buildSchema({
+      resolvers: [
+        PostResolver,
+        PostFieldResolver,
+        //
+      ],
+      /**
+       * @see https://github.com/MichalLytek/type-graphql/blob/master/src/utils/container.ts#L53
+       */
+      container: { get: token => container.resolve(token) },
+    });
+    container.registerInstance(GraphQLSchema, schema);
   }
 
   private static async connectToDatabase() {

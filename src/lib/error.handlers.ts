@@ -5,13 +5,18 @@ import { ErrorCode } from '../domain/error/error.code';
 import { logger } from './logger';
 
 export const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction): void => {
+  response.encounteredErrorHandler = true;
+
   if (error instanceof CustomExternalError) {
     response.status(error.statusCode).json({ errors: error.messages });
   } else {
-    logger.error(ErrorCode.INTERNAL_ERROR, {
-      errorMessage: error.message,
-      stack: error instanceof CustomInternalError ? error.stackArray : error.stack,
-    });
+    logger.error(
+      {
+        errorMessage: error.message,
+        stack: error instanceof CustomInternalError ? error.stackArray : error.stack,
+      },
+      ErrorCode.INTERNAL_ERROR,
+    );
     response.status(500).json({ message: ErrorCode.INTERNAL_ERROR });
   }
   next();

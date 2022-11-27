@@ -22,6 +22,8 @@ function handleExit(error?: Error): void {
 
 async function bootstrap(): Promise<void> {
   const app = await Container.create();
+  await app.init();
+
   const server = app.server
     .listen(envs.port, () => {
       console.log(`listening on port ${envs.port} 🚀`);

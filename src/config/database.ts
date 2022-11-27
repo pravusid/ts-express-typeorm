@@ -13,7 +13,7 @@ export const database = {
       username: envs.db.username,
       password: envs.db.password,
       database: envs.db.database,
-      logging: true,
+      logging: envs.isProd === false,
       synchronize: true,
       entities: [`${join(__dirname, '..')}/domain/**/*.{js,ts}`],
       namingStrategy: new SnakeNamingStrategy(),

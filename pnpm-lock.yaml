@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@apollo/server': ^4.2.1
+  '@godaddy/terminus': ^4.11.2
   '@types/body-parser': ^1.19.2
   '@types/compression': ^1.7.2
   '@types/cors': ^2.8.12
@@ -51,6 +52,7 @@ specifiers:
 
 dependencies:
   '@apollo/server': 4.2.1_graphql@16.6.0
+  '@godaddy/terminus': 4.11.2
   '@types/body-parser': 1.19.2
   '@types/compression': 1.7.2
   '@types/cors': 2.8.12
@@ -643,6 +645,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@godaddy/terminus/4.11.2:
+    resolution: {integrity: sha512-e/kbOWpGKME42eltM/wXM3RxSUOrfureZxEd6Dt6NXyFoJ7E8lnmm7znXydJsL3B7ky4HRFZI+eHrep54NZbeQ==}
+    dependencies:
+      stoppable: 1.1.0
+    dev: false
 
   /@graphql-tools/merge/8.3.12_graphql@16.6.0:
     resolution: {integrity: sha512-BFL8r4+FrqecPnIW0H8UJCBRQ4Y8Ep60aujw9c/sQuFmQTiqgWgpphswMGfaosP2zUinDE3ojU5wwcS2IJnumA==}
@@ -5196,6 +5204,11 @@ packages:
   /statuses/2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
+    dev: false
+
+  /stoppable/1.1.0:
+    resolution: {integrity: sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw==}
+    engines: {node: '>=4', npm: '>=6'}
     dev: false
 
   /string-length/4.0.2:

@@ -20,8 +20,6 @@ import { logger } from './lib/logger';
 export class App {
   readonly server: express.Express = express();
 
-  private isKeepAliveDisabled = false;
-
   constructor(private router: AppRouter, private schema: GraphQLSchema) {}
 
   async init() {
@@ -51,13 +49,6 @@ export class App {
     server.use(json());
     server.use(urlencoded({ extended: false }));
     server.use(compression());
-
-    server.use((request, response, next): void => {
-      if (this.isKeepAliveDisabled) {
-        response.set('Connection', 'close');
-      }
-      next();
-    });
 
     server.use(routes);
     server.use(errorHandler);
@@ -96,9 +87,5 @@ export class App {
         context: ({ req }) => Promise.resolve({ ip: req.ip }),
       }),
     );
-  }
-
-  close(): void {
-    this.isKeepAliveDisabled = true;
   }
 }

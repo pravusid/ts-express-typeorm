@@ -5,7 +5,8 @@ module.exports = {
       name: 'app',
       script: './dist/main.js',
       instances: 1,
-      kill_timeout: 5000,
+      restart_delay: 1000,
+      kill_timeout: 30000,
       merge_logs: true,
       env: {
         NODE_ENV: 'production',

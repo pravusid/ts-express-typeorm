@@ -8,6 +8,7 @@ TypeScript & Express.js & TypeORM Example
 
 - `tsyringe` (dependency injection)
 - `express`
+- `@godaddy/terminus`
 - `graphql`
 - `type-graphql`
 - `@apollo/server`

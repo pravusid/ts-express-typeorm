@@ -1,9 +1,10 @@
 import { singleton } from 'tsyringe';
-import { Arg, Ctx, FieldResolver, Query, Resolver, ResolverInterface, Root } from 'type-graphql';
+import { Arg, Ctx, FieldResolver, Mutation, Query, Resolver, ResolverInterface, Root } from 'type-graphql';
 import { Post } from '../domain/post';
 import { logger } from '../lib/logger';
 import { PostService } from '../service/post.service';
 import { GraphQLContext } from './context';
+import { PostCreateInput, PostCreatePayload } from './post.input';
 
 @singleton()
 @Resolver()
@@ -16,6 +17,12 @@ export class PostResolver {
 
     const post = await this.postService.getPost(id);
     return post;
+  }
+
+  @Mutation(() => PostCreatePayload)
+  async createPost(@Arg('input') input: PostCreateInput) {
+    const { id } = await this.postService.createPost(input);
+    return { id };
   }
 }
 

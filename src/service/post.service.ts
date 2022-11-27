@@ -2,7 +2,7 @@ import { singleton } from 'tsyringe';
 import { DataSource, Repository } from 'typeorm';
 import { CustomExternalError } from '../domain/error/custom.external.error';
 import { ErrorCode } from '../domain/error/error.code';
-import { Post, PostCreateInput } from '../domain/post';
+import { Post, PostCreate } from '../domain/post';
 
 @singleton()
 export class PostService {
@@ -12,7 +12,7 @@ export class PostService {
     this.postRepository = ds.getRepository(Post);
   }
 
-  async getPost(id: number): Promise<Post> {
+  async getPost(id: string): Promise<Post> {
     try {
       const post = await this.postRepository.findOneOrFail({ where: { id } });
       return post;
@@ -21,7 +21,7 @@ export class PostService {
     }
   }
 
-  createPost(newPost: PostCreateInput): Promise<Post> {
+  createPost(newPost: PostCreate): Promise<Post> {
     return this.postRepository.save(newPost);
   }
 }

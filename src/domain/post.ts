@@ -1,14 +1,14 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-export type PostCreateInput = Pick<Post, 'title' | 'author' | 'content'>;
+export type PostCreate = Pick<Post, 'title' | 'author' | 'content'>;
 
 @Entity()
 @ObjectType()
 export class Post {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'bigint' })
   @Field(() => ID)
-  id: number;
+  id: string;
 
   @Column({ nullable: false })
   @Field()

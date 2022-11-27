@@ -16,7 +16,7 @@ export class PostController {
   private getPost = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const post = await this.postService.getPost(parseInt(id, 10));
+    const post = await this.postService.getPost(id);
 
     return res.json(post);
   });

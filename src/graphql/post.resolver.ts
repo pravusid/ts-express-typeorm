@@ -11,7 +11,7 @@ export class PostResolver {
   constructor(private postService: PostService) {}
 
   @Query(() => Post)
-  async post(@Arg('id') id: number, @Ctx() ctx: GraphQLContext) {
+  async post(@Arg('id') id: string, @Ctx() ctx: GraphQLContext) {
     logger.debug(ctx, 'GraphQL Context');
 
     const post = await this.postService.getPost(id);

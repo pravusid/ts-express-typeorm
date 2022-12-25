@@ -1,5 +1,4 @@
 import { ApolloServer } from '@apollo/server';
-import { unwrapResolverError } from '@apollo/server/errors';
 import { expressMiddleware } from '@apollo/server/express4';
 import { json, urlencoded } from 'body-parser';
 import * as compression from 'compression';
@@ -10,10 +9,8 @@ import helmet from 'helmet';
 import * as morgan from 'morgan';
 import { singleton } from 'tsyringe';
 import { AppRouter } from './app.router';
-import { CustomExternalError } from './domain/error/custom.external.error';
-import { ErrorCode } from './domain/error/error.code';
 import { GraphQLContext } from './graphql/context';
-import { errorHandler } from './lib/error.handlers';
+import { errorHandler, gqlErrorHandler, gqlFormatError } from './lib/error.handlers';
 import { logger } from './lib/logger';
 
 @singleton()
@@ -55,22 +52,14 @@ export class App {
 
     const apollo = new ApolloServer<GraphQLContext>({
       schema,
-      formatError(formattedError, error) {
-        const unwrappedError = unwrapResolverError(error);
-
-        if (unwrappedError instanceof CustomExternalError) {
-          return {
-            ...formattedError,
-            message: unwrappedError.messages.join(', '),
-          };
-        }
-
-        logger.error({ errorMessage: formattedError.message, unwrappedError }, ErrorCode.INTERNAL_ERROR);
-        return {
-          ...formattedError,
-          message: ErrorCode.INTERNAL_ERROR,
-        };
-      },
+      formatError: gqlFormatError,
+      plugins: [
+        {
+          requestDidStart: () => {
+            return Promise.resolve({ didEncounterErrors: gqlErrorHandler });
+          },
+        },
+      ],
     });
     await apollo.start();
 

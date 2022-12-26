@@ -45,7 +45,6 @@ export const gqlFormatError = (formattedError: GraphQLFormattedError, error: unk
     };
   }
 
-  logger.error({ errorMessage: formattedError.message, unwrappedError }, ErrorCode.INTERNAL_ERROR);
   return {
     ...formattedError,
     message: ErrorCode.INTERNAL_ERROR,

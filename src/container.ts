@@ -2,11 +2,11 @@ import { GraphQLSchema } from 'graphql';
 import { container } from 'tsyringe';
 import { buildSchema } from 'type-graphql';
 import { DataSource } from 'typeorm';
-import { PingController } from './api/ping.controller';
-import { PostController } from './api/post.controller';
+import { PingController } from './api/controller/ping.controller';
+import { PostController } from './api/controller/post.controller';
+import { PostFieldResolver, PostResolver } from './api/graphql/post.resolver';
 import { App } from './app';
-import { database } from './config/database';
-import { PostFieldResolver, PostResolver } from './graphql/post.resolver';
+import { database } from './infra/database';
 import { logger } from './lib/logger';
 import { Constructor, Controller } from './types';
 

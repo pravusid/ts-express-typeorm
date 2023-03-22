@@ -1,9 +1,9 @@
 import { singleton } from 'tsyringe';
 import { Arg, Ctx, FieldResolver, Mutation, Query, Resolver, ResolverInterface, Root } from 'type-graphql';
-import { Post } from '../domain/post';
-import { logger } from '../lib/logger';
-import { PostService } from '../service/post.service';
-import { GraphQLContext } from './context';
+import { GraphQLContext } from '../../config/context';
+import { Post } from '../../domain/post';
+import { logger } from '../../lib/logger';
+import { PostService } from '../../service/post.service';
 import { PostCreateInput, PostCreatePayload } from './post.input';
 
 @singleton()

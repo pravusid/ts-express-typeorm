@@ -2,10 +2,10 @@ import { GraphQLRequestContextDidEncounterErrors } from '@apollo/server';
 import { unwrapResolverError } from '@apollo/server/errors';
 import { NextFunction, Request, Response } from 'express';
 import { GraphQLFormattedError } from 'graphql';
+import { GraphQLContext } from '../config/context';
 import { CustomExternalError } from '../domain/error/custom.external.error';
 import { CustomInternalError } from '../domain/error/custom.internal.error';
 import { ErrorCode } from '../domain/error/error.code';
-import { GraphQLContext } from '../graphql/context';
 import { logger } from './logger';
 
 export const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction): void => {

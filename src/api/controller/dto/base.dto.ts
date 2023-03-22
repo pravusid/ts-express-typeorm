@@ -1,5 +1,5 @@
 import { validate } from 'class-validator';
-import { CustomExternalError } from '../domain/error/custom.external.error';
+import { CustomExternalError } from '../../../domain/error/custom.external.error';
 
 export abstract class BaseDto {
   constructor(payload: unknown) {

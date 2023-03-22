@@ -9,7 +9,7 @@ import helmet from 'helmet';
 import * as morgan from 'morgan';
 import { singleton } from 'tsyringe';
 import { AppRouter } from './app.router';
-import { GraphQLContext } from './graphql/context';
+import { GraphQLContext } from './config/context';
 import { errorHandler, gqlErrorHandler, gqlFormatError } from './lib/error.handlers';
 import { logger } from './lib/logger';
 

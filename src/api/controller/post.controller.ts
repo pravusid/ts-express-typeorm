@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
 import { singleton } from 'tsyringe';
-import { PostCreateDto } from '../dto/post.create.dto';
-import { asyncHandler } from '../lib/error.handlers';
-import { PostService } from '../service/post.service';
+import { asyncHandler } from '../../lib/error.handlers';
+import { PostService } from '../../service/post.service';
+import { PostCreateDto } from './dto/post.create.dto';
 
 @singleton()
 export class PostController {

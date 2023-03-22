@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { envs } from './environments';
+import { envs } from '../config/environments';
 
 export const database = {
   init: (): Promise<DataSource> => {

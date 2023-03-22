@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-import { PostCreate } from '../domain/post';
+import { PostCreate } from '../../../domain/post';
 import { BaseDto } from './base.dto';
 
 export class PostCreateDto extends BaseDto {

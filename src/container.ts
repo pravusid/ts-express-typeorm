@@ -33,7 +33,7 @@ export class Container {
       PingController,
       PostController,
       //
-    ]).map(cls => container.registerType(Controller, cls));
+    ]).map((cls) => container.registerType(Controller, cls));
   }
 
   private static async loadGraphQLSchema() {
@@ -46,7 +46,7 @@ export class Container {
       /**
        * @see https://github.com/MichalLytek/type-graphql/blob/master/src/utils/container.ts#L53
        */
-      container: { get: token => container.resolve(token) },
+      container: { get: (token) => container.resolve(token) },
     });
     container.registerInstance(GraphQLSchema, schema);
   }

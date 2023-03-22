@@ -9,7 +9,7 @@ export abstract class BaseDto {
   async validate(): Promise<CustomExternalError | void> {
     const result = await validate(this);
     return result.length
-      ? new CustomExternalError(result.flatMap(res => Object.values(res.constraints ?? {})))
+      ? new CustomExternalError(result.flatMap((res) => Object.values(res.constraints ?? {})))
       : undefined;
   }
 

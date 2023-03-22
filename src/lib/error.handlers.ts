@@ -29,7 +29,7 @@ export const errorHandler = (error: Error, request: Request, response: Response,
 type AsyncFunc = (req: Request, resp: Response, next: NextFunction) => Promise<unknown>;
 
 export const asyncHandler: (func: AsyncFunc) => AsyncFunc =
-  func =>
+  (func) =>
   (request, response, next): Promise<unknown> =>
     Promise.resolve(func(request, response, next)).catch((error: Error) =>
       errorHandler(error, request, response, next),
@@ -56,7 +56,7 @@ export const gqlErrorHandler = ({
   contextValue,
   errors,
 }: GraphQLRequestContextDidEncounterErrors<GraphQLContext>): Promise<void> => {
-  errors.forEach(err => {
+  errors.forEach((err) => {
     const unwrappedError = unwrapResolverError(err);
     if (unwrappedError instanceof Error && unwrappedError instanceof CustomExternalError === false) {
       logger.error(

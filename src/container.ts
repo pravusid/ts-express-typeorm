@@ -2,13 +2,13 @@ import { GraphQLSchema } from 'graphql';
 import { Container as _Container } from 'inversify';
 import { buildSchema } from 'type-graphql';
 import { DataSource } from 'typeorm';
-import { PingController } from './api/controller/ping.controller';
-import { PostController } from './api/controller/post.controller';
-import { PostFieldResolver, PostResolver } from './api/graphql/post.resolver';
-import { App } from './app';
-import { database } from './infra/database';
-import { logger } from './lib/logger';
-import { Constructor, Controller } from './types';
+import { PingController } from './api/controller/ping.controller.js';
+import { PostController } from './api/controller/post.controller.js';
+import { PostFieldResolver, PostResolver } from './api/graphql/post.resolver.js';
+import { App } from './app.js';
+import { database } from './infra/database.js';
+import { logger } from './lib/logger.js';
+import { Constructor, Controller } from './types.js';
 
 export class Container {
   private static container = new _Container({

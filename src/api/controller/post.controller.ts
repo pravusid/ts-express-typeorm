@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
 import { injectable } from 'inversify';
-import { asyncHandler } from '../../lib/error.handlers';
-import { PostService } from '../../service/post.service';
-import { PostCreateDto } from './dto/post.create.dto';
+import { asyncHandler } from '../../lib/error.handlers.js';
+import { PostService } from '../../service/post.service.js';
+import { PostCreateDto } from './dto/post.create.dto.js';
 
 @injectable()
 export class PostController {

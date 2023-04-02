@@ -1,5 +1,5 @@
 import * as cv from 'class-validator';
-import { CustomValidationError } from '../domain/error/validation.error';
+import { CustomValidationError } from '../domain/error/validation.error.js';
 
 export const validate = async <T extends object>(arg: T): Promise<T> => {
   const errors = await cv.validate(arg);

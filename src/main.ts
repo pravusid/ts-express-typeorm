@@ -1,7 +1,7 @@
 import { createTerminus } from '@godaddy/terminus';
 import 'reflect-metadata';
-import { envs } from './config/environments';
-import { Container } from './container';
+import { envs } from './config/environments.js';
+import { Container } from './container.js';
 
 /* eslint-disable no-console */
 

@@ -1,5 +1,5 @@
 import { Field, ID, InputType, ObjectType } from 'type-graphql';
-import { Post, PostCreate } from '../../domain/post';
+import { Post, PostCreate } from '../../domain/post.js';
 
 @InputType()
 export class PostCreateInput implements PostCreate {

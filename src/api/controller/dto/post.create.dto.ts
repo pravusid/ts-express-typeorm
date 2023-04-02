@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
-import { PostCreate } from '../../../domain/post';
-import { BaseDto } from './base.dto';
+import { PostCreate } from '../../../domain/post.js';
+import { BaseDto } from './base.dto.js';
 
 export class PostCreateDto extends BaseDto {
   @IsNotEmpty()

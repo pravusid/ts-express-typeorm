@@ -2,11 +2,14 @@ import { GraphQLRequestContextDidEncounterErrors } from '@apollo/server';
 import { unwrapResolverError } from '@apollo/server/errors';
 import { NextFunction, Request, Response } from 'express';
 import { GraphQLFormattedError } from 'graphql';
-import { GraphQLContext } from '../config/context';
-import { CustomExternalError } from '../domain/error/custom.external.error';
-import { CustomInternalError } from '../domain/error/custom.internal.error';
-import { ErrorCode } from '../domain/error/error.code';
-import { logger } from './logger';
+import { GraphQLContext } from '../config/context.js';
+import { CustomExternalError } from '../domain/error/custom.external.error.js';
+import { ErrorCode } from '../domain/error/error.code.js';
+import { logger } from './logger.js';
+
+const errorStackToArray = (error: Error): string[] => {
+  return error.stack ? error.stack.split('\n').map((s) => s.trim()) : [];
+};
 
 export const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction): void => {
   response.encounteredErrorHandler = true;
@@ -17,7 +20,7 @@ export const errorHandler = (error: Error, request: Request, response: Response,
     logger.error(
       {
         errorMessage: error.message,
-        stack: error instanceof CustomInternalError ? error.stackArray : error.stack,
+        stack: errorStackToArray(error),
       },
       ErrorCode.INTERNAL_ERROR,
     );
@@ -62,7 +65,7 @@ export const gqlErrorHandler = ({
       logger.error(
         {
           errorMessage: unwrappedError.message,
-          stack: unwrappedError instanceof CustomInternalError ? unwrappedError.stackArray : unwrappedError.stack,
+          stack: errorStackToArray(unwrappedError),
         },
         `[GraphQL]${ErrorCode.INTERNAL_ERROR}`,
       );

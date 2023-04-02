@@ -1,8 +1,8 @@
 import { injectable } from 'inversify';
 import { DataSource, Repository } from 'typeorm';
-import { CustomExternalError } from '../domain/error/custom.external.error';
-import { ErrorCode } from '../domain/error/error.code';
-import { Post, PostCreate } from '../domain/post';
+import { CustomExternalError } from '../domain/error/custom.external.error.js';
+import { ErrorCode } from '../domain/error/error.code.js';
+import { Post, PostCreate } from '../domain/post.js';
 
 @injectable()
 export class PostService {

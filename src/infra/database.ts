@@ -1,7 +1,11 @@
 import { join } from 'path';
 import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { envs } from '../config/environments';
+import url from 'url';
+import { envs } from '../config/environments.js';
+
+// eslint-disable-next-line
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 export const database = {
   init: (): Promise<DataSource> => {

@@ -1,17 +1,16 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-import { json, urlencoded } from 'body-parser';
-import * as compression from 'compression';
-import * as cors from 'cors';
-import * as express from 'express';
+import compression from 'compression';
+import cors from 'cors';
+import express from 'express';
 import { GraphQLSchema } from 'graphql';
 import helmet from 'helmet';
 import { injectable } from 'inversify';
-import * as morgan from 'morgan';
-import { AppRouter } from './app.router';
-import { GraphQLContext } from './config/context';
-import { errorHandler, gqlErrorHandler, gqlFormatError } from './lib/error.handlers';
-import { logger } from './lib/logger';
+import morgan from 'morgan';
+import { AppRouter } from './app.router.js';
+import { GraphQLContext } from './config/context.js';
+import { errorHandler, gqlErrorHandler, gqlFormatError } from './lib/error.handlers.js';
+import { logger } from './lib/logger.js';
 
 @injectable()
 export class App {
@@ -43,8 +42,8 @@ export class App {
     );
     server.use(cors({ exposedHeaders: ['Content-Disposition'] }));
 
-    server.use(json());
-    server.use(urlencoded({ extended: false }));
+    server.use(express.json());
+    server.use(express.urlencoded({ extended: false }));
     server.use(compression());
 
     server.use(routes);

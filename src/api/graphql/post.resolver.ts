@@ -1,10 +1,10 @@
 import { injectable } from 'inversify';
 import { Arg, Ctx, FieldResolver, Mutation, Query, Resolver, ResolverInterface, Root } from 'type-graphql';
-import { GraphQLContext } from '../../config/context';
-import { Post } from '../../domain/post';
-import { logger } from '../../lib/logger';
-import { PostService } from '../../service/post.service';
-import { PostCreateInput, PostCreatePayload } from './post.input';
+import { GraphQLContext } from '../../config/context.js';
+import { Post } from '../../domain/post.js';
+import { logger } from '../../lib/logger.js';
+import { PostService } from '../../service/post.service.js';
+import { PostCreateInput, PostCreatePayload } from './post.input.js';
 
 @injectable()
 @Resolver()

@@ -1,6 +1,6 @@
 # ts-express-typeorm
 
-TypeScript & Express.js & TypeORM & GraphQL Example
+TypeScript(ESM) & Express.js & TypeORM & GraphQL Example
 
 ## Dependencies
 
@@ -25,9 +25,7 @@ TypeScript & Express.js & TypeORM & GraphQL Example
 
 ## LiveReload for development
 
-> TypeScript@^3.5.0
-
-`concurrently` & incremental build & `nodemon`
+`concurrently` & `tsc` incremental build & `nodemon`
 
 ## Run
 

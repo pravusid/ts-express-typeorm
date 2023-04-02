@@ -48,6 +48,12 @@ export class Container {
         PostFieldResolver,
         //
       ],
+      validate: {
+        /**
+         * @see https://github.com/MichalLytek/type-graphql/issues/1396
+         */
+        forbidUnknownValues: false,
+      },
       /**
        * @see https://github.com/MichalLytek/type-graphql/blob/master/src/utils/container.ts#L53
        */

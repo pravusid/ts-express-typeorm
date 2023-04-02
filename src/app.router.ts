@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { injectAll, singleton } from 'tsyringe';
+import { injectable, multiInject } from 'inversify';
 import { Controller } from './types';
 
-@singleton()
+@injectable()
 export class AppRouter {
   readonly routes: Router = Router();
 
-  constructor(@injectAll(Controller) controllers: Controller[]) {
+  constructor(@multiInject(Controller) controllers: Controller[]) {
     this.routes.use(...controllers.map(({ routes }) => routes));
   }
 }

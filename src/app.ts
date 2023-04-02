@@ -6,14 +6,14 @@ import * as cors from 'cors';
 import * as express from 'express';
 import { GraphQLSchema } from 'graphql';
 import helmet from 'helmet';
+import { injectable } from 'inversify';
 import * as morgan from 'morgan';
-import { singleton } from 'tsyringe';
 import { AppRouter } from './app.router';
 import { GraphQLContext } from './config/context';
 import { errorHandler, gqlErrorHandler, gqlFormatError } from './lib/error.handlers';
 import { logger } from './lib/logger';
 
-@singleton()
+@injectable()
 export class App {
   readonly server: express.Express = express();
 

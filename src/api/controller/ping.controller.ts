@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
-import { singleton } from 'tsyringe';
+import { injectable } from 'inversify';
 
-@singleton()
+@injectable()
 export class PingController {
   readonly routes: Router = Router();
 

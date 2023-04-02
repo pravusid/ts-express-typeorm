@@ -1,10 +1,10 @@
 import { Request, Response, Router } from 'express';
-import { singleton } from 'tsyringe';
+import { injectable } from 'inversify';
 import { asyncHandler } from '../../lib/error.handlers';
 import { PostService } from '../../service/post.service';
 import { PostCreateDto } from './dto/post.create.dto';
 
-@singleton()
+@injectable()
 export class PostController {
   readonly routes: Router = Router();
 

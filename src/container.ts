@@ -1,5 +1,5 @@
 import { GraphQLSchema } from 'graphql';
-import { container } from 'tsyringe';
+import { Container as _Container } from 'inversify';
 import { buildSchema } from 'type-graphql';
 import { DataSource } from 'typeorm';
 import { PingController } from './api/controller/ping.controller';
@@ -11,6 +11,11 @@ import { logger } from './lib/logger';
 import { Constructor, Controller } from './types';
 
 export class Container {
+  private static container = new _Container({
+    defaultScope: 'Singleton',
+    autoBindInjectable: true,
+  });
+
   static async create(): Promise<App> {
     await Promise.all([
       this.loadControllers(),
@@ -18,7 +23,7 @@ export class Container {
       this.connectToDatabase(),
       //
     ]);
-    return container.resolve(App);
+    return this.container.resolve(App);
   }
 
   static async destroy(): Promise<void> {
@@ -33,7 +38,7 @@ export class Container {
       PingController,
       PostController,
       //
-    ]).map((cls) => container.registerType(Controller, cls));
+    ]).map((cls) => this.container.bind(Controller).to(cls));
   }
 
   private static async loadGraphQLSchema() {
@@ -46,19 +51,19 @@ export class Container {
       /**
        * @see https://github.com/MichalLytek/type-graphql/blob/master/src/utils/container.ts#L53
        */
-      container: { get: (token) => container.resolve(token) },
+      container: { get: (token) => this.container.resolve(token) },
     });
-    container.registerInstance(GraphQLSchema, schema);
+    this.container.bind(GraphQLSchema).toConstantValue(schema);
   }
 
   private static async connectToDatabase() {
     const dataSource = await database.init();
-    container.registerInstance(DataSource, dataSource);
+    this.container.bind(DataSource).toConstantValue(dataSource);
     logger.info('database connection is established');
   }
 
   private static async closeDatabase() {
-    await container.resolve(DataSource).destroy();
+    await this.container.resolve(DataSource).destroy();
     logger.info('database connection is closed');
   }
 }

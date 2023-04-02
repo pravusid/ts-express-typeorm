@@ -1,10 +1,10 @@
-import { singleton } from 'tsyringe';
+import { injectable } from 'inversify';
 import { DataSource, Repository } from 'typeorm';
 import { CustomExternalError } from '../domain/error/custom.external.error';
 import { ErrorCode } from '../domain/error/error.code';
 import { Post, PostCreate } from '../domain/post';
 
-@singleton()
+@injectable()
 export class PostService {
   private postRepository: Repository<Post>;
 

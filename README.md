@@ -6,7 +6,7 @@ TypeScript & Express.js & TypeORM & GraphQL Example
 
 > nodejs@^16
 
-- `tsyringe` (dependency injection)
+- `inversify` (dependency injection)
 - `express`
 - `@godaddy/terminus`
 - `graphql`

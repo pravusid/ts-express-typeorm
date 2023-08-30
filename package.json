@@ -23,7 +23,7 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@apollo/server": "^4.5.0",
+    "@apollo/server": "^4.9.3",
     "@godaddy/terminus": "^4.11.2",
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.13",

@@ -64,13 +64,6 @@ export class App {
 
     server.use(
       '/graphql',
-      (_, res, next) => {
-        // 앞 단계 미들웨어에서 오류발생했다면, graphQL 미들웨어 실행하지 않고 끝낼 수 있음
-        if (res.encounteredErrorHandler) {
-          return;
-        }
-        next();
-      },
       expressMiddleware(apollo, {
         context: ({ req }) => Promise.resolve({ ip: req.ip }),
       }),

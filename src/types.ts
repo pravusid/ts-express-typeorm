@@ -2,9 +2,8 @@ import { Router } from 'express';
 
 declare global {
   namespace Express {
-    export interface Response {
-      encounteredErrorHandler?: boolean;
-    }
+    // export interface Request {}
+    // export interface Response {}
   }
 }
 

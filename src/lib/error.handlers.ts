@@ -12,8 +12,6 @@ const errorStackToArray = (error: Error): string[] => {
 };
 
 export const errorHandler = (error: Error, request: Request, response: Response, next: NextFunction): void => {
-  response.encounteredErrorHandler = true;
-
   if (error instanceof CustomExternalError) {
     response.status(error.statusCode).json({ errors: error.messages });
   } else {
@@ -26,7 +24,6 @@ export const errorHandler = (error: Error, request: Request, response: Response,
     );
     response.status(500).json({ message: ErrorCode.INTERNAL_ERROR });
   }
-  next();
 };
 
 type AsyncFunc = (req: Request, resp: Response, next: NextFunction) => Promise<unknown>;

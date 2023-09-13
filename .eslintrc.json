@@ -20,6 +20,7 @@
     "no-return-await": "off",
     "no-shadow": "off",
     "no-undef": "off",
+    "no-unused-vars": "off",
     "no-useless-constructor": "off",
     "require-await": "off",
     "import/extensions": "off",
@@ -31,6 +32,7 @@
     "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-shadow": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-useless-constructor": "error",
     "@typescript-eslint/require-await": "warn",
     "@typescript-eslint/return-await": ["warn", "in-try-catch"]

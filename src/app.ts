@@ -16,7 +16,10 @@ import { logger } from './lib/logger.js';
 export class App {
   readonly server: express.Express = express();
 
-  constructor(private router: AppRouter, private schema: GraphQLSchema) {}
+  constructor(
+    private router: AppRouter,
+    private schema: GraphQLSchema,
+  ) {}
 
   async init() {
     const {

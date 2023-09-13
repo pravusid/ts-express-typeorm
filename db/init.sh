@@ -3,6 +3,8 @@
 current_dir=$(dirname $BASH_SOURCE)
 cd $current_dir
 
+DEV_CONTAINER_NAME="tsexpress"
+
 docker run \
   --detach \
   --env MYSQL_ROOT_PASSWORD=1234 \
@@ -14,3 +16,5 @@ docker run \
   mariadb:latest \
   --character-set-server=utf8mb4 \
   --collation-server=utf8mb4_unicode_ci
+
+docker logs -f $DEV_CONTAINER_NAME

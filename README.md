@@ -29,4 +29,7 @@ TypeScript(ESM) & Express.js & TypeORM & GraphQL Example
 
 ## Run
 
-`./run-database.sh && pm2 start ecosystem.config.js`
+```sh
+./db/init.sh
+pm2 start ecosystem.config.js
+```

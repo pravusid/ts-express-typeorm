@@ -1,2 +1,2 @@
-GRANT all privileges on *.* to 'tsexpress'@'%';
+GRANT all privileges on *.* to 'dev_user'@'%';
 flush privileges;

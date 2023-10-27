@@ -6,9 +6,10 @@ import { PingController } from './api/controller/ping.controller.js';
 import { PostController } from './api/controller/post.controller.js';
 import { PostFieldResolver, PostResolver } from './api/graphql/post.resolver.js';
 import { App } from './app.js';
+import { Controller } from './app.router.js';
 import { database } from './infra/database.js';
 import { logger } from './lib/logger.js';
-import { Constructor, Controller } from './types.js';
+import { Constructor } from './types/constructor.js';
 
 export class Container {
   private static container = new _Container({

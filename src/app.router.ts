@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import { injectable, multiInject } from 'inversify';
-import { Controller } from './types.js';
+
+export class Controller {
+  readonly routes: Router;
+}
 
 @injectable()
 export class AppRouter {

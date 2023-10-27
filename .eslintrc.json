@@ -6,6 +6,7 @@
   "env": {
     "node": true
   },
+  "ignorePatterns": ["*.js"],
   "extends": [
     "airbnb-base",
     "airbnb-typescript/base",
@@ -39,7 +40,7 @@
   },
   "overrides": [
     {
-      "files": ["src/**/*.spec.*", "*.js"],
+      "files": ["src/**/*.spec.*"],
       "parserOptions": {
         "project": "./tsconfig.spec.json"
       },

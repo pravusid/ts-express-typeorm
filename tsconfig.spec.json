@@ -4,15 +4,12 @@
     "types": [
       "jest",
       "node"
-    ],
-    "strict": false
+    ]
   },
   "include": [
     "src/**/*.spec.*",
     "src/**/__mocks__/**/*",
     "src/**/__tests__/**/*",
-    "test/**/*",
-    "types/**/*",
-    "*.js"
+    "test/**/*"
   ]
 }

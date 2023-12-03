@@ -1,6 +1,6 @@
 {
   "name": "ts-express-typeorm",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "typescript + express.js + typeorm",
   "author": "Sangdon Park",
   "type": "module",
@@ -10,10 +10,10 @@
     "start": "NODE_ENV=production node dist/main.js",
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
-    "dev": "pnpm run build && concurrently -p none \"tsc -p tsconfig.build.json -w\" \"nodemon --watch dist --exec 'node -r @cspotcode/source-map-support/register' dist/main.js | pino-pretty\"",
+    "dev": "pnpm run build && concurrently -p none \"tsc -p tsconfig.build.json -w\" \"nodemon --watch dist --exec 'node --enable-source-maps' dist/main.js | pino-pretty\"",
     "dev:ts": "nodemon --watch src --exec 'ts-node --esm' src/main.ts | pino-pretty",
     "dev:kill": "pgrep -fl $(pwd)/node_modules/.bin | awk '{print $1}' | xargs -r -I{} kill -2 {} && lsof -ti :8080 | xargs -r -I{} kill {}",
-    "dev:debug": "pnpm run build && concurrently -p none \"tsc -p tsconfig.build.json -w\" \"nodemon --watch dist --exec 'DEBUG=1 node -r @cspotcode/source-map-support/register --inspect=9229' dist/main.js | pino-pretty\"",
+    "dev:debug": "pnpm run build && concurrently -p none \"tsc -p tsconfig.build.json -w\" \"nodemon --watch dist --exec 'DEBUG=1 node --enable-source-maps --inspect=9229' dist/main.js | pino-pretty\"",
     "typecheck": "tsc -p tsconfig.build.json --noEmit --incremental false --tsBuildInfoFile null",
     "circular": "pnpm run prestart && madge --circular dist/",
     "lint": "eslint 'src/**/*'",
@@ -50,7 +50,6 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@cspotcode/source-map-support": "^0.8.1",
     "@types/jest": "^29.5.4",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^6.7.0",

@@ -82,9 +82,6 @@ dependencies:
     version: 5.2.2
 
 devDependencies:
-  '@cspotcode/source-map-support':
-    specifier: ^0.8.1
-    version: 0.8.1
   '@types/jest':
     specifier: ^29.5.4
     version: 29.5.4

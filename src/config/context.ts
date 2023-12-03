@@ -1,3 +1,3 @@
 export type GraphQLContext = {
-  ip: string;
+  ip?: string;
 };

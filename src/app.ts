@@ -31,17 +31,16 @@ export class App {
     const env = server.get('env');
     logger.info(`environment: ${env}`);
 
+    server.set('trust proxy', true);
     server.use(helmet());
     server.use(
-      env === 'production'
-        ? morgan('combined', {
-            stream: {
-              write(message: string): void {
-                logger.info(message);
-              },
-            },
-          })
-        : morgan('dev'),
+      morgan('combined', {
+        stream: {
+          write(message: string): void {
+            logger.info(message);
+          },
+        },
+      }),
     );
     server.use(cors({ exposedHeaders: ['Content-Disposition'] }));
 

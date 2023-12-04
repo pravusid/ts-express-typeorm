@@ -7,7 +7,7 @@
   "main": "dist/main.js",
   "scripts": {
     "prestart": "pnpm run clean && pnpm run build",
-    "start": "NODE_ENV=production node dist/main.js",
+    "start": "NODE_ENV=production node --enable-source-maps dist/main.js",
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf dist",
     "dev": "pnpm run build && concurrently -p none \"tsc -p tsconfig.build.json -w\" \"nodemon --watch dist --exec 'node --enable-source-maps' dist/main.js | pino-pretty\"",

@@ -9,7 +9,7 @@ export class PingController {
     this.routes.get('/ping', this.ping);
   }
 
-  private ping = (req: Request, res: Response) => {
+  private ping = (req: Request<never>, res: Response<{ message: string }>) => {
     return res.json({ message: 'pong' });
   };
 }

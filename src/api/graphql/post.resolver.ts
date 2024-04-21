@@ -12,16 +12,18 @@ export class PostResolver {
   constructor(private postService: PostService) {}
 
   @Query(() => Post)
-  async post(@Arg('id') id: string, @Ctx() ctx: GraphQLContext) {
+  async post(@Arg('id') id: string, @Ctx() ctx: GraphQLContext): Promise<Post> {
     logger.debug(ctx, 'GraphQL Context');
 
     const post = await this.postService.getPost(id);
+
     return post;
   }
 
   @Mutation(() => PostCreatePayload)
-  async createPost(@Arg('input') input: PostCreateInput) {
+  async createPost(@Arg('input') input: PostCreateInput): Promise<{ id: string }> {
     const { id } = await this.postService.createPost(input);
+
     return { id };
   }
 }

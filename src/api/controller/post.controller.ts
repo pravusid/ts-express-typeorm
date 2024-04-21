@@ -3,6 +3,7 @@ import { injectable } from 'inversify';
 import { asyncHandler } from '../../lib/error.handlers.js';
 import { PostService } from '../../service/post.service.js';
 import { PostCreateDto } from './dto/post.create.dto.js';
+import { PostResDto } from './dto/post.res.dto.js';
 
 @injectable()
 export class PostController {
@@ -13,15 +14,15 @@ export class PostController {
     this.routes.post('/post', this.savePost);
   }
 
-  private getPost = asyncHandler(async (req: Request, res: Response) => {
+  private getPost = asyncHandler(async (req: Request<{ id: string }>, res: Response<PostResDto>) => {
     const { id } = req.params;
 
     const post = await this.postService.getPost(id);
 
-    return res.json(post);
+    return res.json(PostResDto.fromEntity(post));
   });
 
-  private savePost = asyncHandler(async (req: Request, res: Response) => {
+  private savePost = asyncHandler(async (req: Request<never, unknown, unknown>, res: Response<{ id: string }>) => {
     const dto = await new PostCreateDto(req.body).throw();
 
     const created = await this.postService.createPost(dto.toEntity());

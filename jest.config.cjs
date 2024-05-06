@@ -1,11 +1,15 @@
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   setupFiles: ['dotenv/config'],
-  moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
-  testRegex: '^.+\\.spec\\.(js|jsx|ts|tsx)$',
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
   transform: {
-    '^.+\\.(ts|tsx)$': [
+    '^.+\\.tsx?$': [
       'ts-jest',
       {
+        useESM: true,
         tsconfig: 'tsconfig.spec.json',
         isolatedModules: true,
       },
@@ -13,5 +17,4 @@ module.exports = {
   },
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
-  testEnvironment: 'node',
 };

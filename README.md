@@ -23,6 +23,11 @@ TypeScript(ESM) & Express.js & TypeORM & GraphQL Example
 - `typescript-eslint`
 - `prettier`
 
+## Jest & ESM
+
+- <https://jestjs.io/docs/ecmascript-modules>
+- <https://kulshekhar.github.io/ts-jest/docs/guides/esm-support/>
+
 ## LiveReload for development
 
 `concurrently` & `tsc` incremental build & `nodemon`

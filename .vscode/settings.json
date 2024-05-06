@@ -11,5 +11,6 @@
   "files.trimFinalNewlines": true,
   "javascript.format.enable": false,
   "typescript.format.enable": false,
-  "javascript.validate.enable": false
+  "javascript.validate.enable": false,
+  "jest.jestCommandLine": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" pnpm exec jest"
 }

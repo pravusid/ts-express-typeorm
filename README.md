@@ -36,5 +36,6 @@ TypeScript(ESM) & Express.js & TypeORM & GraphQL Example
 
 ```sh
 ./db/init.sh
-pm2 start ecosystem.config.js
+npm i -g pm2
+pm2 start ecosystem.config.cjs
 ```

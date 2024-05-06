@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
+    "target": "ES2022",
     "module": "Node16",
     "skipLibCheck": true,
     "incremental": true,

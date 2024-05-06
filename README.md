@@ -4,7 +4,7 @@ TypeScript(ESM) & Express.js & TypeORM & GraphQL Example
 
 ## Dependencies
 
-> nodejs@^18
+> nodejs@^20
 
 - `inversify` (dependency injection)
 - `express`

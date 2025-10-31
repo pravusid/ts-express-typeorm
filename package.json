@@ -46,7 +46,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^5.0.5",
     "type-graphql": "2.0.0-beta.3",
-    "typeorm": "^0.3.17",
+    "typeorm": "^0.3.26",
     "typeorm-naming-strategies": "^4.1.0",
     "typescript": "^5.3.2"
   },

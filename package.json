@@ -24,7 +24,7 @@
     "test:cov": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "dependencies": {
-    "@apollo/server": "^4.9.5",
+    "@apollo/server": "^5.5.0",
     "@godaddy/terminus": "^4.12.1",
     "@types/compression": "^1.7.5",
     "@types/cors": "^2.8.17",
